@@ -158,3 +158,101 @@ as.matrix(dfm2)
 
 
 #결합 - 데이터셋 결합 | 열 결합 | 행 결합 | 공통 열에 의한 결합
+#yahoo의 주가 데이터 다운로드 하여 주가 데이터 옆에 환율 데이터 까지 넣는 법
+#install.packages("quantmod")
+#finance.yahoo.com에서 가져옴
+#finance.yahoo.com: Samsung Electronics(005930.ks), KRW 개별 종목의 코드, 환율
+library(quantmod)
+sec <- getSymbols(Symbols = "005930.ks",
+                 from="2021-10-01",
+                 to="2021-12-31",
+                 auto.assign = FALSE)
+sec <- as.data.frame(sec)
+str(sec)
+head(sec)
+
+head(sec[c("005930.KS.Close", "005930.KS.Volume")])
+
+sec <- cbind(date=rownames(sec),
+            symbol="005930.KS",
+            sec[c("005930.KS.Close", "005930.KS.Volume")])
+rownames(sec) <- NULL #행이름 지우기
+colnames(sec)[c(3,4)] <- c("close", "volume")
+head(sec)
+
+#현대자동차 주가정보 다운로드
+hmc <- getSymbols(Symbols = "005387.KS",
+                  from="2021-10-01",
+                  to="2021-12-31",
+                  auto.assign = FALSE)
+hmc <- as.data.frame(hmc)
+head(hmc)
+hmc <- cbind(date=rownames(hmc),
+             symbol="005387.KS",
+             hmc[c("005387.KS.Close", "005387.KS.Volume")])
+rownames(hmc) <- NULL
+colnames(hmc)[c(3,4)] <- c("close", "volume")
+
+#행의 방향으로 결함
+stock <- rbind(sec, hmc)
+head(stock)
+stock
+
+
+#merge로 환율 데이터 옆에 붙이기
+#finance.yahoo.com
+fx <- getSymbols(Symbols = "KRW=X",
+                  from="2021-10-01",
+                  to="2021-12-31",
+                  auto.assign = FALSE)
+#데이터프레임 형태로 변환
+fx <- as.data.frame(fx)
+str(fx)
+head(fx["KRW=X.Close"])
+fx <- cbind(date=rownames(fx),
+            fx[c("KRW=X.Close")])
+head(fx)
+rownames(fx) <- NULL
+colnames(fx)[c(2)] <- "close"
+
+#공통된 날짜 기준으로 merge
+#공통 열 이름 확인
+intersect(names(sec), names(fx))
+
+report <- merge(sec, fx, by="date")
+report
+
+#두개의 벡터를 인수를 받아서 인수가 동일한 인덱스를 반환함, 2번째 벡터의 인덱스를 반환한다
+#없으면 NA
+match()
+v <- c(10,9,8,7,6,5,4,3,2,1)
+match(7,v)
+match(c(11,5,3,1,0), v)
+
+head(mtcars)
+car <- mtcars
+car["name"] <- rownames(car)
+rownames(car) <- NULL
+head(car)
+
+highhp.car <- car[car$hp>145,]
+highhp.car
+lightwt.car <- car[car$wt<3.2,]
+lightwt.car
+
+#힘이 좋으면서 가벼운 차 위의 2dataframe 합치기
+index <- match(highhp.car$name, lightwt.car$name)
+index
+
+lightwt.car[na.omit(index),]
+#%in%연산자 사용 가능 일치하는지 논리값으로 반환함
+v <- c(10,9,8,7,6,5,4,3,2,1)
+7 %in% v
+c(1,2,3) %in% v
+c(11,5,0) %in% v
+
+index2 <- highhp.car$name %in% lightwt.car$name
+index2
+highhp.car[index2,]
+
+
