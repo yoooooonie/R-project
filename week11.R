@@ -256,3 +256,116 @@ index2
 highhp.car[index2,]
 
 
+
+#subset | 인덱싱 | $ [[ ]] [ ] | 무작위 표본(random sample) 추출 | 결측값 | 구간별 범주화
+str(mtcars)
+mtcars$mpg
+mtcars[["mpg"]]
+mtcars[[1]]
+mtcars["mpg"]
+mtcars[c(1,4)]
+mtcars[c("mpg","hp")]
+
+mtcars[-c(2,3,4)]
+mtcars[-1]
+mtcars[1] <- NULL
+mtcars
+
+mtcars[c(-1, 2)]
+# Error in `[.default`(mtcars, c(-1, 2)) : 
+#   only 0's may be mixed with negative subscripts
+
+str(iris)
+iris[1:5,]
+iris[,c(1,4)]
+
+iris[,1] # 한줄이라서 벡터 형식으로 출력됨 R은 간단하게 나타내려고 함
+iris[,1, drop=FALSE] #원래의 dataframe 형식으로 출력됨
+
+#원래 형태로 하고 싶으면 행렬인덱싱보다 리스트 인덱싱을 쓰는 것이 안전하다
+iris[1]
+
+iris[1:5,c(1,4)]
+
+#조건에 따라서 만드는 경우
+iris[iris$Sepal.Length>7,]
+iris[iris$Sepal.Length>7,c(1,2,5)]
+
+subset(iris, subset=(Sepal.Length>7),
+       select =c(1,2,5)) 
+
+#랜덤 샘플링 할 때 #비복원추출
+sample(x=1:10, size=5)
+sample(x=10, size=5)
+#복원추출
+sample(x=10, size = 5, replace = TRUE)
+
+#무작위
+sample(10)
+
+#sample이 일정하게 나오면 좋겠다. seed 지정
+set.seed(1)
+sample(x=10, size = 5, replace=TRUE)
+
+sample(x=10, size = 5, replace=TRUE)
+
+set.seed(1)
+sample(x=10, size = 5, replace=TRUE)
+
+sample(iris,3) #5개의 열에서 3개의 열을 무작위 추출함, 보통 이건 필요 없지.
+
+set.seed(1)
+index <- sample(nrow(iris),3)
+index
+iris[index,]
+
+#데이터셋에 중복된 값 제거하고 subset 생성하기
+duplicated(c(1,2,3,1,1,3,4))
+
+id <- c("A001","A002","A003")
+name <- c("Mouse","Keyboard","USB")
+price <- c(30000,90000,50000)
+product <- data.frame(id=id, name=name, price=price)
+product
+
+product <- rbind(product, c("A001","Mouse",30000))
+product
+
+#방법1
+duplicated(product)
+product[-duplicated(product), ]
+#방법2
+product[!duplicated(product), ]
+#방법3
+which(duplicated(product))
+index <- which(duplicated(product))
+product[-index,]
+#방법4
+unique(product)
+
+#방법5
+str(airquality)
+complete.cases(airquality) #행에 결측값이 있으면 FALSE, 없으면 TRUE
+airquality.nona <- airquality[complete.cases(airquality),]
+str(airquality.nona)
+
+#방법6
+airquality.nona2 <- na.omit(airquality)
+str(airquality.nona2)
+
+
+#범주화 하기
+#cut 사용하면 factor 형식으로 바꿔줌
+cut(x=iris$Sepal.Width, breaks=c(0,1,2,3,4,5))
+cut(x=iris$Sepal.Width, breaks=5)#임의로 5개의 구간을 나눔, 동일한 간격
+
+#빈도 계산을 위해서는 table 사용
+iris.cut <- cut(x=iris$Sepal.Width, breaks=c(0,1,2,3,4,5))
+table(iris.cut)
+summary(iris.cut)
+
+#table 열에 이름 지정정
+iris.cut <- cut(x=iris$Sepal.Width,
+                breaks = c(0,1,2,3,4,5),
+                labels = c("smaller","small","medium","big","biger"))
+table(iris.cut)
