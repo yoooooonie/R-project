@@ -1,0 +1,681 @@
+#Week 5
+#리스트 생성
+
+> list(0.68,0.9544,0.9974)
+[[1]]
+[1] 0.68
+
+[[2]]
+[1] 0.9544
+
+[[3]]
+[1] 0.9974
+
+> #List는 여러 형태의 원소를 가질 수 있다
+> list(1.23, "Apple", c(2,3,5,7), matrix(1:6, ncol = 3), mean)
+[[1]]
+[1] 1.23
+
+[[2]]
+[1] "Apple"
+
+[[3]]
+[1] 2 3 5 7
+
+[[4]]
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+
+[[5]]
+function (x, ...) 
+UseMethod("mean")
+<bytecode: 0x0000020dabc8dfd8>
+<environment: namespace:base>
+
+> lst <- list()
+> lst
+list()
+> lst[[1]] <- 1.23
+> lst[[2]] <- "Apple"
+> lst[[3]] <- c(2,3,5,7)
+> lst[[4]] <- matrix(1:6, ncol = 3)
+> lst[[5]] <- mean
+> lst
+[[1]]
+[1] 1.23
+
+[[2]]
+[1] "Apple"
+
+[[3]]
+[1] 2 3 5 7
+
+[[4]]
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+
+[[5]]
+function (x, ...) 
+UseMethod("mean")
+<bytecode: 0x0000020dabc8dfd8>
+<environment: namespace:base>
+
+> #이름을 갖도록 할 수 있다
+> lst1 <- list(0.68,0.9544,0.9974)
+> lst1
+[[1]]
+[1] 0.68
+
+[[2]]
+[1] 0.9544
+
+[[3]]
+[1] 0.9974
+
+> names(lst1) <- c("sigma1","sigma2","sigma3")
+> lst1
+$sigma1
+[1] 0.68
+
+$sigma2
+[1] 0.9544
+
+$sigma3
+[1] 0.9974
+
+> names(lst1)
+[1] "sigma1" "sigma2" "sigma3"
+> #원소의 개수 알기
+> length(lst1)
+[1] 3
+
+> #리스트 끼리의 결합 
+> worldcup1 <- list("Brazil","South Africa", "Germany")
+> worldcup2 <- list("Korea", "France", "USA")
+> worldcup1
+[[1]]
+[1] "Brazil"
+
+[[2]]
+[1] "South Africa"
+
+[[3]]
+[1] "Germany"
+
+> worldcup2
+[[1]]
+[1] "Korea"
+
+[[2]]
+[1] "France"
+
+[[3]]
+[1] "USA"
+
+> #리스트 끼리의 결합 c()를 사용하면 됨
+> c(worldcup1,worldcup2)
+[[1]]
+[1] "Brazil"
+
+[[2]]
+[1] "South Africa"
+
+[[3]]
+[1] "Germany"
+
+[[4]]
+[1] "Korea"
+
+[[5]]
+[1] "France"
+
+[[6]]
+[1] "USA"
+
+> a <- list(1,2,3,4,5,6,7)
+> a
+[[1]]
+[1] 1
+
+[[2]]
+[1] 2
+
+[[3]]
+[1] 3
+
+[[4]]
+[1] 4
+
+[[5]]
+[1] 5
+
+[[6]]
+[1] 6
+
+[[7]]
+[1] 7
+
+> mean(a) #mean 함수 사용 불가능 mean은 벡터에 사용하는 함수
+[1] NA
+Warning message:
+In mean.default(a) : 인자가 수치형 또는 논리형이 아니므로 NA를 반환합니다
+> #mean 함수 사용 불가능 mean은 벡터에 사용하는 함수
+> #unlist()로 벡터 형으로 변환 후 계산
+> mean(unlist(a))
+[1] 4
+> min(unlist(a))
+[1] 1
+> max(unlist(a))
+[1] 7
+> product <- list("A002", "Mouse", 30000)
+> product
+[[1]]
+[1] "A002"
+
+[[2]]
+[1] "Mouse"
+
+[[3]]
+[1] 30000
+
+> product[[3]]
+[1] 30000
+> product[[2]] #내부에 있는 값 "Mouse" 를 가져옴옴
+[1] "Mouse"
+> product[3]
+[[1]]
+[1] 30000
+
+> product[2]
+[[1]]
+[1] "Mouse"
+
+> class(product[[3]])
+[1] "numeric"
+> class(product[3])
+[1] "list"
+> #숫자랑 연산을 하고 싶다! 하면 [[]]사용해야 겠지?
+> product[[3]]*0.9
+[1] 27000
+> product[3]*0.9
+Error in product[3] * 0.9 : non-numeric argument to binary operator
+> product[c(1,2)] #첫번째 두번째 원소가 리스트 형태로 출력됨됨
+[[1]]
+[1] "A002"
+
+[[2]]
+[1] "Mouse"
+
+> #논리값 사용가능
+> product[c(FALSE, TRUE, FALSE)]
+[[1]]
+[1] "Mouse"
+
+> #minus index 사용가능
+> product[-1]
+[[1]]
+[1] "Mouse"
+
+[[2]]
+[1] 30000
+
+> #이름 지정하기
+> product1 <- list(id="A002", name="Mouse", price=30000)
+> product1
+$id
+[1] "A002"
+
+$name
+[1] "Mouse"
+
+$price
+[1] 30000
+
+> #이름으로 값 불러오기 가능
+> product1[["name"]]
+[1] "Mouse"
+> #이름이 잇는 경우는 $를 사용해서 접근 가능
+> product1$name
+[1] "Mouse"
+> product[C("name", "price")]
+Error in C("name", "price") : object not interpretable as a factor
+> product1[C("name", "price")]
+Error in C("name", "price") : object not interpretable as a factor
+> product1[c("name", "price")]
+$name
+[1] "Mouse"
+
+$price
+[1] 30000
+
+> product1
+$id
+[1] "A002"
+
+$name
+[1] "Mouse"
+
+$price
+[1] 30000
+
+> #없는거 호출하면 NULL을 반환함
+> product1[["fourth"]] 
+NULL
+> product1$fourth
+NULL
+> product1[[4]]#없는거 호출하면 error
+Error in product1[[4]] : subscript out of bounds
+> product1[c(4,2,5)] #존재하지 않는 벡터값을 줌, 없는 인덱스는 NULL을 반환환
+$<NA>
+NULL
+
+$name
+[1] "Mouse"
+
+$<NA>
+NULL
+
+> product1[c("fourth", "name","rich")]#존재하지 않는 이름을 인덱스로 줌, 없는 인덱스는 NULL을 반환환
+$<NA>
+NULL
+
+$name
+[1] "Mouse"
+
+$<NA>
+NULL
+
+> #중첩된 리스트로 생성이 가능
+> lst2 <- list(one=1, two=2, three=list(alpha=3.1, beta=3.2))
+> lst2
+$one
+[1] 1
+
+$two
+[1] 2
+
+$three
+$three$alpha
+[1] 3.1
+
+$three$beta
+[1] 3.2
+
+
+> lst2[["three"]]
+$alpha
+[1] 3.1
+
+$beta
+[1] 3.2
+
+> lst2[["three"]]$beta
+[1] 3.2
+> lst2$three$beta
+[1] 3.2
+
+> lst2[["three"]][["beta"]]
+[1] 3.2
+> pdt <- list(id="A001", name="Mouse", price=30000)
+> pdt
+$id
+[1] "A001"
+
+$name
+[1] "Mouse"
+
+$price
+[1] 30000
+
+> pdt[[3]] <- 40000
+> pdt
+$id
+[1] "A001"
+
+$name
+[1] "Mouse"
+
+$price
+[1] 40000
+
+> pdt[["price"]] <- 41000
+> pdt
+$id
+[1] "A001"
+
+$name
+[1] "Mouse"
+
+$price
+[1] 41000
+
+> pdt$price <- 42000
+> pdt
+$id
+[1] "A001"
+
+$name
+[1] "Mouse"
+
+$price
+[1] 42000
+
+> pdt[3] <- 43000
+> pdt
+$id
+[1] "A001"
+
+$name
+[1] "Mouse"
+
+$price
+[1] 43000
+
+> pdt["price"] <- 44000
+> pdt
+$id
+[1] "A001"
+
+$name
+[1] "Mouse"
+
+$price
+[1] 44000
+
+> #여러개의 값을 할당하는 경우는 [[]]써야함
+> pdt[[3]] <- c(30000,40000)
+> pdt
+$id
+[1] "A001"
+
+$name
+[1] "Mouse"
+
+$price
+[1] 30000 40000
+
+> #리스트 구조로 만들어서 할당해줘야 함
+> pdt[3] <- list(c(31000,41000))
+> pdt
+$id
+[1] "A001"
+
+$name
+[1] "Mouse"
+
+$price
+[1] 31000 41000
+
+> pdt[1:3] <-  list("A002", "Keyboard", 90000)
+> pdt
+$id
+[1] "A002"
+
+$name
+[1] "Keyboard"
+
+$price
+[1] 90000
+
+> #원소 추가
+> pdt[[4]] <- c("Domestic", "Export")
+> pdt
+$id
+[1] "A002"
+
+$name
+[1] "Keyboard"
+
+$price
+[1] 90000
+
+[[4]]
+[1] "Domestic" "Export"  
+
+> #추가한 원소에 이름 지정
+> pdt$madein <- c("Korea", "China")
+> pdt
+$id
+[1] "A002"
+
+$name
+[1] "Keyboard"
+
+$price
+[1] 90000
+
+[[4]]
+[1] "Domestic" "Export"  
+
+$madein
+[1] "Korea" "China"
+
+> #원소 추가하면서 이름 지정
+> pdt[["madein2"]] <- c("Korea", "China")
+> pdt
+$id
+[1] "A002"
+
+$name
+[1] "Keyboard"
+
+$price
+[1] 90000
+
+[[4]]
+[1] "Domestic" "Export"  
+
+$madein
+[1] "Korea" "China"
+
+$madein2
+[1] "Korea" "China"
+
+> pdt["madein3"] <- list(c("Korea","China"))
+> pdt
+$id
+[1] "A002"
+
+$name
+[1] "Keyboard"
+
+$price
+[1] 90000
+
+[[4]]
+[1] "Domestic" "Export"  
+
+$madein
+[1] "Korea" "China"
+
+$madein2
+[1] "Korea" "China"
+
+$madein3
+[1] "Korea" "China"
+
+> #여러 원소 한번에 추가하는 경우
+> pdt[6:9] <- list(0.12,0.15,0.22,0.27)
+> pdt
+$id
+[1] "A002"
+
+$name
+[1] "Keyboard"
+
+$price
+[1] 90000
+
+[[4]]
+[1] "Domestic" "Export"  
+
+$madein
+[1] "Korea" "China"
+
+$madein2
+[1] 0.12
+
+$madein3
+[1] 0.15
+
+[[8]]
+[1] 0.22
+
+[[9]]
+[1] 0.27
+
+> #추가한 원소에 이름 지정
+> pdt$madein <- c("Korea", "China")
+> #원소 추가하면서 이름 지정
+> pdt[["madein2"]] <- c("Korea", "China")
+> pdt["madein3"] <- list(c("Korea","China"))
+> pdt
+$id
+[1] "A002"
+
+$name
+[1] "Keyboard"
+
+$price
+[1] 90000
+
+[[4]]
+[1] "Domestic" "Export"  
+
+$madein
+[1] "Korea" "China"
+
+$madein2
+[1] "Korea" "China"
+
+$madein3
+[1] "Korea" "China"
+
+[[8]]
+[1] 0.22
+
+[[9]]
+[1] 0.27
+
+> #여러 원소 한번에 추가하는 경우
+> pdt[8:11] <- list(0.12,0.15,0.22,0.27)
+> pdt
+$id
+[1] "A002"
+
+$name
+[1] "Keyboard"
+
+$price
+[1] 90000
+
+[[4]]
+[1] "Domestic" "Export"  
+
+$madein
+[1] "Korea" "China"
+
+$madein2
+[1] "Korea" "China"
+
+$madein3
+[1] "Korea" "China"
+
+[[8]]
+[1] 0.12
+
+[[9]]
+[1] 0.15
+
+[[10]]
+[1] 0.22
+
+[[11]]
+[1] 0.27
+
+> names <- c("Mon", "Tue", "Wed","Thu","Fri","Sat","Sun")
+> values <- c(842,729,786,751,844,851,702)
+> traffic.death <- list()
+> traffic.death
+list()
+> traffic.death[names] <- values
+> traffic.death
+$Mon
+[1] 842
+
+$Tue
+[1] 729
+
+$Wed
+[1] 786
+
+$Thu
+[1] 751
+
+$Fri
+[1] 844
+
+$Sat
+[1] 851
+
+$Sun
+[1] 702
+
+> #특정 원소 제거
+> traffic.death[["Fri"]] <- NULL
+> traffic.death["Fri"] <- NULL
+> traffic.death
+$Mon
+[1] 842
+
+$Tue
+[1] 729
+
+$Wed
+[1] 786
+
+$Thu
+[1] 751
+
+$Sat
+[1] 851
+
+$Sun
+[1] 702
+
+> #여러개 원소 제거
+> traffic.death[c("Mon","Wed")] <- NULL
+> traffic.death
+$Tue
+[1] 729
+
+$Thu
+[1] 751
+
+$Sat
+[1] 851
+
+$Sun
+[1] 702
+
+> #조건을 만족하는 원소 제거
+> #숫자가 750보다 작은 경우 삭제
+> traffic.death <750
+  Tue   Thu   Sat   Sun 
+ TRUE FALSE FALSE  TRUE 
+> traffic.death[traffic.death<750]
+$Tue
+[1] 729
+
+$Sun
+[1] 702
+
+> traffic.death[traffic.death<750] <- NULL
+> traffic.death
+$Thu
+[1] 751
+
+$Sat
+[1] 851

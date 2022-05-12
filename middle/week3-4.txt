@@ -1,0 +1,150 @@
+> #범주형데이터를 처리할 때
+> #
+> review <- c("GOOD","GOOD","Indifferent","Bad","GOOD","Bad")
+> review
+[1] "GOOD"        "GOOD"        "Indifferent" "Bad"         "GOOD"        "Bad"        
+> review.factor <- factor(review)
+> review.factor      #레벨이 추출됨 
+[1] GOOD        GOOD        Indifferent Bad         GOOD        Bad        
+Levels: Bad GOOD Indifferent
+> str(review.factor)
+ Factor w/ 3 levels "Bad","GOOD","Indifferent": 2 2 3 1 2 1
+> # Factor w/ 3 levels "Bad","GOOD","Indifferent": 2 2 3 1 2 1
+> # 알파벳 순서대로 Bad :1 GOOD:2 Indifferent:3 으로 매칭되어 숫자가 할당됨
+> #R은 내부적으로 팩터를 숫자로 저장함
+> as.numeric(review.factor)
+[1] 2 2 3 1 2 1
+> eventday <- c("M","M","T","W","M","W","Th","F","T")
+> eventday.factor <- factor(eventday)
+> eventday.factor
+[1] M  M  T  W  M  W  Th F  T 
+Levels: F M T Th W
+> #처음에 생성된 레벨 이외에는 나중에 데이터를 추가해도 레벨이 추가되지 않음
+> #그래서 레벨을 추가할 수 있음
+> eventday.factor <- factor(eventday,
++                           levels = c("M","T","W","Th","F","S","Su"))
+> eventday.factor
+[1] M  M  T  W  M  W  Th F  T 
+Levels: M T W Th F S Su
+> levels(review.factor)
+[1] "Bad"         "GOOD"        "Indifferent"
+> levels(review.factor) <- c("B","G","I") #레벵의 이름을 바꿀 수 있다
+> levels(review.factor)
+[1] "B" "G" "I"
+> review.factor
+[1] G G I B G B
+Levels: B G I
+> #레벨의 개수를 알고 싶을 때
+> nlevels(review.factor)
+[1] 3
+> length(levels(review.factor))
+[1] 3
+> eval <- c("Medium","Low","High","Medium","High")
+> eval.factor <- factor(eval)
+> eval.factor
+[1] Medium Low    High   Medium High  
+Levels: High Low Medium
+> #서열벡터 만들기 순서를 만들어 줌 선언해줌
+> eval.ordered <- factor(eval, levels=c("Low", "Medium","High"), ordered = TRUE)
+> eval.ordered
+[1] Medium Low    High   Medium High  
+Levels: Low < Medium < High
+> #table을 이용해서 빈도를 확인
+> table(eval.factor)
+eval.factor
+  High    Low Medium 
+     2      1      2 
+> table(eval.ordered)
+eval.ordered
+   Low Medium   High 
+     1      2      2 
+> #성별로 이루어진 데이터
+> sex <- c(2,1,2,2,1,0)
+> sex.factor <- factor(sex,levels=c(1,2), labels = c("Male", "Female"))
+> sex.factor
+[1] Female Male   Female Female Male   <NA>  
+Levels: Male Female
+> table(sex.factor)
+sex.factor
+  Male Female 
+     2      3 
+> table(sex)
+sex
+0 1 2 
+1 2 3 
+> getwd()
+[1] "C:/ymyang"
+> #forcats 
+> c("Vegetables","Fruits","Vegetables","Grains","Fruits","Vegetables","Dairy","Fruits","Proteins","Fruits")
+ [1] "Vegetables" "Fruits"     "Vegetables" "Grains"     "Fruits"     "Vegetables" "Dairy"      "Fruits"    
+ [9] "Proteins"   "Fruits"    
+> food <- factor(c("Vegetables","Fruits","Vegetables","Grains","Fruits","Vegetables","Dairy","Fruits","Proteins","Fruits"))
+> food
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Dairy      Fruits     Proteins   Fruits    
+Levels: Dairy Fruits Grains Proteins Vegetables
+> library(forcats)
+Error in library(forcats) : ‘forcats’이라고 불리는 패키지가 없습니다
+> install(forcats)
+Error in install(forcats) : could not find function "install"
+> install.packages(forcats)
+Error in install.packages : object 'forcats' not found
+> install.packages("forcats")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+‘C:/Users/hyuscec-2/Documents/R/win-library/4.1’의 위치에 패키지(들)을 설치합니다.
+(왜냐하면 ‘lib’가 지정되지 않았기 때문입니다)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/forcats_0.5.1.zip'
+Content type 'application/zip' length 357459 bytes (349 KB)
+downloaded 349 KB
+
+package ‘forcats’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\hyuscec-2\AppData\Local\Temp\RtmpK0Dold\downloaded_packages
+> library(forcats)
+Warning message:
+패키지 ‘forcats’는 R 버전 4.1.3에서 작성되었습니다 
+> fct_inorder(food)
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Dairy      Fruits     Proteins   Fruits    
+Levels: Vegetables Fruits Grains Dairy Proteins
+> fct_infreq(food)
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Dairy      Fruits     Proteins   Fruits    
+Levels: Fruits Vegetables Dairy Grains Proteins
+> fct_relevel(food,
++             "Fruits","Vegetables","Grains","Proteins","Dairy" )
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Dairy      Fruits     Proteins   Fruits    
+Levels: Fruits Vegetables Grains Proteins Dairy
+> #한가지 레벨만 순서 지정할 수도 있음
+> fct_relevel(food, "Proteins")
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Dairy      Fruits     Proteins   Fruits    
+Levels: Proteins Dairy Fruits Grains Vegetables
+> #한가지 레벨만 순서 지정할 수도 있음
+> fct_relevel(food, "Proteins","Dairy")
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Dairy      Fruits     Proteins   Fruits    
+Levels: Proteins Dairy Fruits Grains Vegetables
+> fct_relevel(food, "Proteins",after = 3)#Proteins가 3번째로 갈 수 있음음
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Dairy      Fruits     Proteins   Fruits    
+Levels: Dairy Fruits Grains Proteins Vegetables
+> fct_relevel(food, "Proteins",after = Inf)#Proteins가 젤 마지막으으로 갈 수 있음음
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Dairy      Fruits     Proteins   Fruits    
+Levels: Dairy Fruits Grains Vegetables Proteins
+> value <- c(1000,1500,1200,700,2000,2000,1350,2500,15000,3000)
+> value
+ [1]  1000  1500  1200   700  2000  2000  1350  2500 15000  3000
+> food
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Dairy      Fruits     Proteins   Fruits    
+Levels: Dairy Fruits Grains Proteins Vegetables
+> fct_reorder(food, .x=value)
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Dairy      Fruits     Proteins   Fruits    
+Levels: Grains Vegetables Dairy Fruits Proteins
+> #vegetables가 3개 있는데, 3개 값의 중위값인 2000원이 대표값, 요약값으로 오름차순 정렬됨
+> fct_reorder(food, .x=value, .fun = mean) #다른값, 평균으로 대표값이 됨됨
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Dairy      Fruits     Proteins   Fruits    
+Levels: Grains Dairy Vegetables Fruits Proteins
+> fct_reorder(food, .x=value, .desc = TRUE) #내림차순으로 정렬됨
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Dairy      Fruits     Proteins   Fruits    
+Levels: Proteins Fruits Dairy Vegetables Grains
+> fct_recode(food, Fats="Proteins", Fats="Dairy")#레벨명을 바꿀 수 있음 Proteins, Dairy -> Fats
+ [1] Vegetables Fruits     Vegetables Grains     Fruits     Vegetables Fats       Fruits     Fats       Fruits    
+Levels: Fats Fruits Grains Vegetables

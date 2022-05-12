@@ -1,0 +1,722 @@
+> #Week7 텍스트
+> x <- "We have a dream"
+> x
+[1] "We have a dream"
+> nchar(x)#문자의 개수
+[1] 15
+> length(x)#원소의 개수
+[1] 1
+> y <- c("We","have","a","dream")
+> y
+[1] "We"    "have"  "a"     "dream"
+> nchar(y)
+[1] 2 4 1 5
+> length(y)
+[1] 4
+> nchar(y[4])
+[1] 5
+> letters
+ [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+> #텍스트 내림차순
+> sort(letters, decreasing = TRUE)
+ [1] "z" "y" "x" "w" "v" "u" "t" "s" "r" "q" "p" "o" "n" "m" "l" "k" "j" "i" "h" "g" "f" "e" "d" "c" "b" "a"
+> #대문자로 변경 or 소문자로 변경
+> fox.says <- "It's only with the HEART that one can See Rightly"
+> tolower(fox.says)
+[1] "it's only with the heart that one can see rightly"
+> toupper(fox.says)
+[1] "IT'S ONLY WITH THE HEART THAT ONE CAN SEE RIGHTLY"
+> #텍스트 분할
+> fox.said <- "what is essential is invisible to the eye"
+> #텍스트 분할
+> fox.said <- "what is essential is invisible to the eye"
+> #구분자를 지정하여 문자열 분할 리스트 형식으로 출력함
+> strsplit(fox.said, split =" ")
+[[1]]
+[1] "what"      "is"        "essential" "is"        "invisible" "to"        "the"       "eye"      
+
+> strsplit(fox.said, split ="")#알파벳 단위로 나눌 수도 있음 공백도 문자열이 됨
+[[1]]
+ [1] "w" "h" "a" "t" " " "i" "s" " " "e" "s" "s" "e" "n" "t" "i" "a" "l" " " "i" "s" " " "i" "n" "v" "i" "s" "i"
+[28] "b" "l" "e" " " "t" "o" " " "t" "h" "e" " " "e" "y" "e"
+
+> #리스트 아닌 형태로 출력하고 싶으면 벡터형식으로 출력됨
+> fox.said.words <- unlist(strsplit(fox.said, split = " "))
+> fox.said.words
+[1] "what"      "is"        "essential" "is"        "invisible" "to"        "the"       "eye"      
+> fox.said.words[3]
+[1] "essential"
+> unlist(strsplit(fox.said, split = " "))[[3]]
+[1] "essential"
+> strsplit(fox.said, split = " ")[[1]][3]
+[1] "essential"
+
+
+> p1 <- "You come at four in the afternoon, then at three I shall begin to be happy"
+> p2 <- "One runs the risk of weeping a little, if one lets himeself be tamed"
+> p3 <- "What makes the desert beautiful is that somewhere it hides a well"
+> littleprince <- c(p1, p2, p3)
+> littleprince
+[1] "You come at four in the afternoon, then at three I shall begin to be happy"
+[2] "One runs the risk of weeping a little, if one lets himeself be tamed"      
+[3] "What makes the desert beautiful is that somewhere it hides a well"         
+> strsplit(littleprince, split = " ")
+[[1]]
+ [1] "You"        "come"       "at"         "four"       "in"         "the"        "afternoon," "then"      
+ [9] "at"         "three"      "I"          "shall"      "begin"      "to"         "be"         "happy"     
+
+[[2]]
+ [1] "One"      "runs"     "the"      "risk"     "of"       "weeping"  "a"        "little,"  "if"      
+[10] "one"      "lets"     "himeself" "be"       "tamed"   
+
+[[3]]
+ [1] "What"      "makes"     "the"       "desert"    "beautiful" "is"        "that"      "somewhere" "it"       
+[10] "hides"     "a"         "well"     
+
+> strsplit(littleprince, split = " ")[[3]][5]
+[1] "beautiful"
+> #중복제거를 하고 싶다
+> fox.said <- "what Is Essential is invisible to the eye"
+> fox.said.words <- strsplit(fox.said, split =" ")[[1]]
+> fox.said.words
+[1] "what"      "Is"        "Essential" "is"        "invisible" "to"        "the"       "eye"      
+> #Is와 is가 다른 단어로 인식됨
+> unique(fox.said.words)
+[1] "what"      "Is"        "Essential" "is"        "invisible" "to"        "the"       "eye"      
+> unique(tolower(fox.said.words))
+[1] "what"      "is"        "essential" "invisible" "to"        "the"       "eye"      
+> #인수들에 주어진 단어들을 결합해서 새로운 인수 생성
+> paste("Everybody","wants","to","fly")
+[1] "Everybody wants to fly"
+> paste(c("Everybody","wants","to","fly"), "Everybody","wants","to","fly")
+[1] "Everybody Everybody wants to fly" "wants Everybody wants to fly"     "to Everybody wants to fly"       
+[4] "fly Everybody wants to fly"      
+> fox.said.words
+[1] "what"      "Is"        "Essential" "is"        "invisible" "to"        "the"       "eye"      
+> paste(fox.said.words)
+[1] "what"      "Is"        "Essential" "is"        "invisible" "to"        "the"       "eye"      
+> #공백 이외의 다른 구분자로 결합하고 싶을 때
+> paste("Everybody","wants","to","fly", sep="-")
+[1] "Everybody-wants-to-fly"
+> paste("Everybody","wants","to","fly", sep="")
+[1] "Everybodywantstofly"
+> paste0("Everybody","wants","to","fly")
+[1] "Everybodywantstofly"
+> #숫자여도 문자로 변환하여 처리해줌
+> paste(pi, sqrt(pi))
+[1] "3.14159265358979 1.77245385090552"
+> paste("25 dgree Celsius is", 25*1.8+32, "dgree Fahrenheit")
+[1] "25 dgree Celsius is 77 dgree Fahrenheit"
+> #텍스트의 paste 함수 벡터 연산처럼 됨
+> heroes <- c("Batman", "Captain America","Hulk")
+> colors <- c("Black","Blue","Green")
+> paste(heroes, colors,sep="*")
+[1] "Batman*Black"         "Captain America*Blue" "Hulk*Green"          
+> paste("Type",1:5)
+[1] "Type 1" "Type 2" "Type 3" "Type 4" "Type 5"
+> paste(1:5,"Type")
+[1] "1 Type" "2 Type" "3 Type" "4 Type" "5 Type"
+> paste(heroes, "Wants","to","fly")
+[1] "Batman Wants to fly"          "Captain America Wants to fly" "Hulk Wants to fly"           
+> paste("Wants",heroes, "to","fly")
+[1] "Wants Batman to fly"          "Wants Captain America to fly" "Wants Hulk to fly"           
+> paste("Wants","to","fly",heroes)
+[1] "Wants to fly Batman"          "Wants to fly Captain America" "Wants to fly Hulk"           
+> paste(c("Everybody","Wants","to","fly"), collapse = " ")
+[1] "Everybody Wants to fly"
+> paste(heroes, "Wants","to","fly")
+[1] "Batman Wants to fly"          "Captain America Wants to fly" "Hulk Wants to fly"           
+> paste(heroes, "Wants","to","fly", collapse = ", and")
+[1] "Batman Wants to fly, andCaptain America Wants to fly, andHulk Wants to fly"
+> paste(heroes, "Wants","to","fly", sep="-")
+[1] "Batman-Wants-to-fly"          "Captain America-Wants-to-fly" "Hulk-Wants-to-fly"           
+> paste(heroes, "Wants","to","fly", sep="-", collapse = ";")
+[1] "Batman-Wants-to-fly;Captain America-Wants-to-fly;Hulk-Wants-to-fly"
+> paste(month.abb, 1:12)
+ [1] "Jan 1"  "Feb 2"  "Mar 3"  "Apr 4"  "May 5"  "Jun 6"  "Jul 7"  "Aug 8"  "Sep 9"  "Oct 10" "Nov 11" "Dec 12"
+> paste(month.abb, 1:12, sep="_")
+ [1] "Jan_1"  "Feb_2"  "Mar_3"  "Apr_4"  "May_5"  "Jun_6"  "Jul_7"  "Aug_8"  "Sep_9"  "Oct_10" "Nov_11" "Dec_12"
+> paste(month.abb, 1:12, sep="_", collapse ="-" )#상위수준에서 재결함
+[1] "Jan_1-Feb_2-Mar_3-Apr_4-May_5-Jun_6-Jul_7-Aug_8-Sep_9-Oct_10-Nov_11-Dec_12"
+> unlist(strsplit(paste(month.abb, 1:12, sep="_", collapse ="-" ), split = "-"))[12]
+[1] "Dec_12"
+
+
+
+
+> #outer() 모든 인자의 곱을 행렬 형식으로 구해줌
+> outer(c(1,2,3),c(1,2,3))
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    2    4    6
+[3,]    3    6    9
+> #옵션을 설정하면 다른 연산도 가능
+> asian.countries <- c("Korea","China","Japan")
+> info <- c("GDP","Population","Area")
+> outer(asian.countries, info, FUN=paste, sep="-")
+     [,1]        [,2]               [,3]        
+[1,] "Korea-GDP" "Korea-Population" "Korea-Area"
+[2,] "China-GDP" "China-Population" "China-Area"
+[3,] "Japan-GDP" "Japan-Population" "Japan-Area"
+> #행렬을 벡터로 바꿀 수 있다
+> out <- outer(asian.countries, info, FUN=paste, sep="-")
+> as.vector(out)
+[1] "Korea-GDP"        "China-GDP"        "Japan-GDP"        "Korea-Population" "China-Population"
+[6] "Japan-Population" "Korea-Area"       "China-Area"       "Japan-Area"      
+> x <- outer(asian.countries, asian.countries, FUN=paste, sep="-")
+> x
+     [,1]          [,2]          [,3]         
+[1,] "Korea-Korea" "Korea-China" "Korea-Japan"
+[2,] "China-Korea" "China-China" "China-Japan"
+[3,] "Japan-Korea" "Japan-China" "Japan-Japan"
+> x[!lower.tri(x)] #아래 삼각형(lower.tri)의 반대(!)
+[1] "Korea-Korea" "Korea-China" "China-China" "Korea-Japan" "China-Japan" "Japan-Japan"
+> customer <- "Jobs"
+> buysize <- 10
+> deliveryday <- 3
+> paste("Hello,", customer, "your order of",buysize, 
++       "product(s) will be delivered within",deliveryday, "day(s).")
+[1] "Hello, Jobs your order of 10 product(s) will be delivered within 3 day(s)."
+> #프린트 좀 편하게 사용할 수 있는 함수
+> sprintf("Hello, %s your order of %s product(s) will be delivered within %s day(s).", 
++         customer, buysize, deliveryday)
+[1] "Hello, Jobs your order of 10 product(s) will be delivered within 3 day(s)."
+> #고객이 여러명일 때
+> customer1 <- c("Jobs", "Gates","Bezos")
+> buysize1 <- c(10,7,12)
+> deliveryday1 <- c(3,2,7.5)
+> sprintf("Hello, %s your order of %s product(s) will be delivered within %s day(s).", 
++         customer1, buysize1, deliveryday1)
+[1] "Hello, Jobs your order of 10 product(s) will be delivered within 3 day(s)."   
+[2] "Hello, Gates your order of 7 product(s) will be delivered within 2 day(s)."   
+[3] "Hello, Bezos your order of 12 product(s) will be delivered within 7.5 day(s)."
+> sprintf("Hello, %s your order of %s product(s) will be delivered within %.1f day(s).", 
++         customer1, buysize1, deliveryday1)
+[1] "Hello, Jobs your order of 10 product(s) will be delivered within 3.0 day(s)." 
+[2] "Hello, Gates your order of 7 product(s) will be delivered within 2.0 day(s)." 
+[3] "Hello, Bezos your order of 12 product(s) will be delivered within 7.5 day(s)."
+
+
+
+
+
+> #문자열의 부분집합을 출력 substr()
+> substr("yangyoonmi", 2, 5)
+[1] "angy"
+> substr("Data Analytics", start=1, stop=4)
+[1] "Data"
+> substr("Data Analytics", start=6, stop=14)
+[1] "Analytics"
+> substr("Data Analytics", start=6, stop=20)
+[1] "Analytics"
+> #숫자부터 끝까지 출력 substring()
+> substring("Data Analytics", 6)
+[1] "Analytics"
+> #벡터 연산 가능하다
+> class <- c("Data Analytics", "Data Mining","Data Visulization")
+> substr(class, 1, 4)
+[1] "Data" "Data" "Data"
+> substring(class, 6)
+[1] "Analytics"    "Mining"       "Visulization"
+> substr(class, c(2:4), c(12,14))
+[1] "ata Analyti" "ta Mining"   "a Visuliz"  
+> substr(class, c(2:4), 12)
+[1] "ata Analyti" "ta Mining"   "a Visuliz"  
+> substr(class, c(2:4), 14)
+[1] "ata Analytics" "ta Mining"     "a Visulizat"  
+> countries <- c("Korea, KR","Inites States, US","China, CN")
+> substr(countries, nchar(countries)-1, nchar(countries))
+[1] "KR" "US" "CN"
+> #특정 문자열 포함한 텍스트 찾기 grep()
+> head(islands)
+      Africa   Antarctica         Asia    Australia Axel Heiberg       Baffin 
+       11506         5500        16988         2968           16          184 
+> landmasses <- names(islands)
+> landmasses
+ [1] "Africa"           "Antarctica"       "Asia"             "Australia"        "Axel Heiberg"    
+ [6] "Baffin"           "Banks"            "Borneo"           "Britain"          "Celebes"         
+[11] "Celon"            "Cuba"             "Devon"            "Ellesmere"        "Europe"          
+[16] "Greenland"        "Hainan"           "Hispaniola"       "Hokkaido"         "Honshu"          
+[21] "Iceland"          "Ireland"          "Java"             "Kyushu"           "Luzon"           
+[26] "Madagascar"       "Melville"         "Mindanao"         "Moluccas"         "New Britain"     
+[31] "New Guinea"       "New Zealand (N)"  "New Zealand (S)"  "Newfoundland"     "North America"   
+[36] "Novaya Zemlya"    "Prince of Wales"  "Sakhalin"         "South America"    "Southampton"     
+[41] "Spitsbergen"      "Sumatra"          "Taiwan"           "Tasmania"         "Tierra del Fuego"
+[46] "Timor"            "Vancouver"        "Victoria"        
+> grep(pattern = "New", x=landmasses)
+[1] 30 31 32 33 34
+> landmasses[grep(pattern = "New", x=landmasses)]
+[1] "New Britain"     "New Guinea"      "New Zealand (N)" "New Zealand (S)" "Newfoundland"   
+> grep(pattern = "New", x=landmasses, value = TRUE)
+[1] "New Britain"     "New Guinea"      "New Zealand (N)" "New Zealand (S)" "Newfoundland"   
+> #두 개의 단어로 이루어진 나라 찾기
+> landmasses[grep(pattern = " ", landmasses)]
+ [1] "Axel Heiberg"     "New Britain"      "New Guinea"       "New Zealand (N)"  "New Zealand (S)" 
+ [6] "North America"    "Novaya Zemlya"    "Prince of Wales"  "South America"    "Tierra del Fuego"
+> grep(pattern = " ", landmasses, value = TRUE)
+ [1] "Axel Heiberg"     "New Britain"      "New Guinea"       "New Zealand (N)"  "New Zealand (S)" 
+ [6] "North America"    "Novaya Zemlya"    "Prince of Wales"  "South America"    "Tierra del Fuego"
+> #문자열을 새로운 문자열로 대체
+> txt <- "Data Analytics is useful. Data Analytics is also interesting."
+> #일치하는 처음 문자만 바꿔줌
+> sub(pattern = "Data", replacement = "Business", x=txt)
+[1] "Business Analytics is useful. Data Analytics is also interesting."
+> #일치하는 모든 문자를 바꿔줌
+> gsub(pattern = "Data", replacement = "Business", x=txt)
+[1] "Business Analytics is useful. Business Analytics is also interesting."
+> x <- c("product.csv", "customer.csv","supplier.csv")
+> gsub(pattern = ".csv", replacement = "", x=x)
+[1] "product"  "customer" "supplier"
+
+
+
+
+
+
+
+> #정규표현식
+> words <- c("at","bat","cat","chaenomeles","chase","chasse","cheap","check","cheese","chick","hat")
+> grep(pattern = "che", words, value = TRUE)
+[1] "cheap"  "check"  "cheese"
+> grep(pattern = "at", words, value = TRUE)
+[1] "at"  "bat" "cat" "hat"
+> #대괄호 안에 있는 내용을 포함된 것을 출력 각각 포함되어 있는 것들
+> grep("[ch]", words, value = TRUE)
+[1] "cat"         "chaenomeles" "chase"       "chasse"      "cheap"       "check"       "cheese"     
+[8] "chick"       "hat"        
+> grep("[at]", words, value = TRUE)
+[1] "at"          "bat"         "cat"         "chaenomeles" "chase"       "chasse"      "cheap"      
+[8] "hat"        
+> #ch|at ch또는 at 를 포함한 것 출력
+> grep("ch|at", words, value = TRUE)
+ [1] "at"          "bat"         "cat"         "chaenomeles" "chase"       "chasse"      "cheap"      
+ [8] "check"       "cheese"      "chick"       "hat"        
+> #다양한 활용
+> grep("ch(e|i)ck", words, value = TRUE)
+[1] "check" "chick"
+> #      ?(0또는 1인가? 없어도 되고 1번 있어도 되고 
+> #      ) * +  정규표현식 활용 봅시다
+> grep("chas?e", words, value = TRUE) # ?(0또는 1인가? 없어도 되고 1번 있어도 되고 
+[1] "chaenomeles" "chase"      
+> grep("chas*e", words, value = TRUE)# *(0또는 1이상인가? 없어도 되고 1번이상 있어도 되고 
+[1] "chaenomeles" "chase"       "chasse"     
+> grep("chas+e", words, value = TRUE)# + (1이상인가? )
+[1] "chase"  "chasse"
+> grep("ch(a*|e*)se", words, value = TRUE)
+[1] "chase"  "cheese"
+> #  ^: 문자열의 시작  $ :문자열의 끝
+> grep("^c", words, value = TRUE)
+[1] "cat"         "chaenomeles" "chase"       "chasse"      "cheap"       "check"       "cheese"     
+[8] "chick"      
+> grep("t$", words, value = TRUE)
+[1] "at"  "bat" "cat" "hat"
+> grep("^c.*t$", words, value = TRUE) #  .은 어떠한 문자도 가능 *은 0또는 1회 이상 출현
+[1] "cat"
+> grep("^[hc]?at", words, value = TRUE) # h 또는 c로 시작,  ?: 앞에 나오는 것이 0 or over 1
+[1] "at"  "cat" "hat"
+> words2 <- c("12 Dec","OK","http://", "<TITLE>Time?</TITLE>","12345","Hi there")
+> grep("[[:alnum:]]", words2, value=TRUE) #알파벳과 숫자의 조합
+[1] "12 Dec"               "OK"                   "http://"              "<TITLE>Time?</TITLE>"
+[5] "12345"                "Hi there"            
+> grep("[[:alpha:]]", words2, value=TRUE) #알파벳문자
+[1] "12 Dec"               "OK"                   "http://"              "<TITLE>Time?</TITLE>"
+[5] "Hi there"            
+> grep("[[:digit:]]", words2, value=TRUE) #숫자가 포함된 것
+[1] "12 Dec" "12345" 
+> grep("[[:punct:]]", words2, value=TRUE) #문장부호가 포함된 것
+[1] "http://"              "<TITLE>Time?</TITLE>"
+> grep("[[:space:]]", words2, value=TRUE) #space가 포함된 것
+[1] "12 Dec"   "Hi there"
+> # \w : 단어
+> # \d : 숫자
+> # \s : space
+> grep("\\w", words2, value=TRUE) #단어 문자가 포함된 것
+[1] "12 Dec"               "OK"                   "http://"              "<TITLE>Time?</TITLE>"
+[5] "12345"                "Hi there"            
+> grep("\\w+", words2, value=TRUE) #단어 문자가 1개 이상 포함된 것
+[1] "12 Dec"               "OK"                   "http://"              "<TITLE>Time?</TITLE>"
+[5] "12345"                "Hi there"            
+> grep("\\d+", words2, value=TRUE) #숫자가 1개 이상 포함된 것
+[1] "12 Dec" "12345" 
+> grep("\\s+", words2, value=TRUE) #공백이 1개 이상 포함된 것
+[1] "12 Dec"   "Hi there"
+> 
+
+
+
+
+
+
+> #정규표현식 패턴검출 패턴위치 패턴추출 패턴치환 패턴분할
+> string <- c("data analytics is useful", "business analytics is helpful","visualization of data is interesting for data scientists")
+> string
+[1] "data analytics is useful"                                
+[2] "business analytics is helpful"                           
+[3] "visualization of data is interesting for data scientists"
+> grep(pattern = "data", x=string)
+[1] 1 3
+> grep(pattern = "data", x=string, value = TRUE)
+[1] "data analytics is useful"                                
+[2] "visualization of data is interesting for data scientists"
+> string[grep(pattern = "data", x=string)]
+[1] "data analytics is useful"                                
+[2] "visualization of data is interesting for data scientists"
+> grep("useful|helpful", string, value = TRUE)
+[1] "data analytics is useful"      "business analytics is helpful"
+> grep("useful|helpful", string, value = TRUE, invert=TRUE) #반대의 결과를 출력력
+[1] "visualization of data is interesting for data scientists"
+> #패턴이 존재하면 TRUE, 없으면 FALSE
+> grepl(pattern = "data", x=string)
+[1]  TRUE FALSE  TRUE
+> string[grepl(pattern = "data", x=string)]
+[1] "data analytics is useful"                                
+[2] "visualization of data is interesting for data scientists"
+> state.name
+ [1] "Alabama"        "Alaska"         "Arizona"        "Arkansas"       "California"     "Colorado"      
+ [7] "Connecticut"    "Delaware"       "Florida"        "Georgia"        "Hawaii"         "Idaho"         
+[13] "Illinois"       "Indiana"        "Iowa"           "Kansas"         "Kentucky"       "Louisiana"     
+[19] "Maine"          "Maryland"       "Massachusetts"  "Michigan"       "Minnesota"      "Mississippi"   
+[25] "Missouri"       "Montana"        "Nebraska"       "Nevada"         "New Hampshire"  "New Jersey"    
+[31] "New Mexico"     "New York"       "North Carolina" "North Dakota"   "Ohio"           "Oklahoma"      
+[37] "Oregon"         "Pennsylvania"   "Rhode Island"   "South Carolina" "South Dakota"   "Tennessee"     
+[43] "Texas"          "Utah"           "Vermont"        "Virginia"       "Washington"     "West Virginia" 
+[49] "Wisconsin"      "Wyoming"       
+> grepl("New", state.name, ignore.case = TRUE) #대소문자 구분없이 옵션
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[19] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE
+[37] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+> state.name[grepl("New", state.name, ignore.case = TRUE)]
+[1] "New Hampshire" "New Jersey"    "New Mexico"    "New York"     
+> sum(grepl("New", state.name, ignore.case = TRUE))
+[1] 4
+> #매칭된 시작위치, 길이 
+> regexpr(pattern = "data", text=string)
+[1]  1 -1 18
+attr(,"match.length")
+[1]  4 -1  4
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+> gregexpr(pattern = "data", text=string)#모든 매칭 결과
+[[1]]
+[1] 1
+attr(,"match.length")
+[1] 4
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[2]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[3]]
+[1] 18 42
+attr(,"match.length")
+[1] 4 4
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+> #패턴추출
+> regmatches(x=string, m=regexpr("data", string))
+[1] "data" "data"
+> regmatches(x=string, m=gregexpr("data", string))
+[[1]]
+[1] "data"
+
+[[2]]
+character(0)
+
+[[3]]
+[1] "data" "data"
+
+> #패턴 이외 다른 것들 추출
+> regmatches(x=string, m=gregexpr("data", string), invert = TRUE)
+[[1]]
+[1] ""                     " analytics is useful"
+
+[[2]]
+[1] "business analytics is helpful"
+
+[[3]]
+[1] "visualization of "    " is interesting for " " scientists"         
+
+> #대체 replace
+> sub(pattern = "data", replacement = "text", x=string)
+[1] "text analytics is useful"                                
+[2] "business analytics is helpful"                           
+[3] "visualization of text is interesting for data scientists"
+> gsub(pattern = "data", replacement = "text", x=string)
+[1] "text analytics is useful"                                
+[2] "business analytics is helpful"                           
+[3] "visualization of text is interesting for text scientists"
+> #분할
+> strsplit(x=string, split = " ")
+[[1]]
+[1] "data"      "analytics" "is"        "useful"   
+
+[[2]]
+[1] "business"  "analytics" "is"        "helpful"  
+
+[[3]]
+[1] "visualization" "of"            "data"          "is"            "interesting"   "for"          
+[7] "data"          "scientists"   
+
+> unlist(strsplit(x=string, split = " "))
+ [1] "data"          "analytics"     "is"            "useful"        "business"      "analytics"    
+ [7] "is"            "helpful"       "visualization" "of"            "data"          "is"           
+[13] "interesting"   "for"           "data"          "scientists"   
+> unique(unlist(strsplit(x=string, split = " ")))
+ [1] "data"          "analytics"     "is"            "useful"        "business"      "helpful"      
+ [7] "visualization" "of"            "interesting"   "for"           "scientists"   
+
+
+
+
+
+> #정규표현식 stringr패키지  tidyverse
+> #install.packages("stringr")
+> library(stringr)
+
+다음의 패키지를 부착합니다: ‘stringr’
+
+The following object is masked _by_ ‘.GlobalEnv’:
+
+    words
+
+Warning message:
+패키지 ‘stringr’는 R 버전 4.1.3에서 작성되었습니다 
+> string <- c("data analytics is useful", 
++             "business analytics is helpful",
++             "visualization of data is interesting for data scientists")
+> str_detect(string = string, pattern = "data")
+[1]  TRUE FALSE  TRUE
+> #패턴이 존재하면 TRUE, 없으면 FALSE
+> grepl(pattern = "data", x=string)
+[1]  TRUE FALSE  TRUE
+> str_detect(string, "DATA") #대소문자 구별한다다
+[1] FALSE FALSE FALSE
+> str_detect(string, fixed("DATA", ignore_case = TRUE)) #대소문자 구별안하고 싶으면
+[1]  TRUE FALSE  TRUE
+> #3개의 원소중에서 a.z 를 찾고 싶은데... 아래처럼 하면 안됨됨
+> str_detect(c("abz", "ayz", "a.z"), "a.z") 
+[1] TRUE TRUE TRUE
+> #. 이 정규표현식에서 전부를 의미함 진짜로 .을 원하면, fixed로 감싸줌
+> str_detect(c("abz", "ayz", "a.z"), fixed("a.z")) 
+[1] FALSE FALSE  TRUE
+> str_detect(c("abz", "ayz", "a.z"), "a\\.z") #\\ 사용해도 됨
+[1] FALSE FALSE  TRUE
+> #위치 첫 매칭이 일어난 시작과 끝 위치 regexpr()비슷함 
+> str_locate(string, "data")
+     start end
+[1,]     1   4
+[2,]    NA  NA
+[3,]    18  21
+> #위치 모든 매칭이 일어난 시작과 끝 위치 리스트 형태 gregexpr() 비슷함
+> str_locate_all(string, "data")
+[[1]]
+     start end
+[1,]     1   4
+
+[[2]]
+     start end
+
+[[3]]
+     start end
+[1,]    18  21
+[2,]    42  45
+
+> #매칭 문자열 추출
+> str_extract(string, "data")
+[1] "data" NA     "data"
+> str_extract_all(string, "data") #리스트 형식
+[[1]]
+[1] "data"
+
+[[2]]
+character(0)
+
+[[3]]
+[1] "data" "data"
+
+> str_extract_all(string, "data", simplify = TRUE) #행렬 형식으로 출력하고 싶으면 옵션 준다
+     [,1]   [,2]  
+[1,] "data" ""    
+[2,] ""     ""    
+[3,] "data" "data"
+> unlist(str_extract_all(string, "data"))
+[1] "data" "data" "data"
+> #str_match()
+> #str_match_all()
+> sentences5 <- sentences[1:5]
+> sentences5
+[1] "The birch canoe slid on the smooth planks."  "Glue the sheet to the dark blue background."
+[3] "It's easy to tell the depth of a well."      "These days a chicken leg is a rare dish."   
+[5] "Rice is often served in round bowls."       
+> #'관사 단어' 사용된 추출
+> str_extract(sentences5, "(a|A|the|The) (\\w+)")
+[1] "The birch" "the sheet" "the depth" "a chicken" NA         
+> str_match(sentences5, "(a|A|the|The) (\\w+)")
+     [,1]        [,2]  [,3]     
+[1,] "The birch" "The" "birch"  
+[2,] "the sheet" "the" "sheet"  
+[3,] "the depth" "the" "depth"  
+[4,] "a chicken" "a"   "chicken"
+[5,] NA          NA    NA       
+> str_match_all(sentences5, "(a|A|the|The) (\\w+)")
+[[1]]
+     [,1]         [,2]  [,3]    
+[1,] "The birch"  "The" "birch" 
+[2,] "the smooth" "the" "smooth"
+
+[[2]]
+     [,1]        [,2]  [,3]   
+[1,] "the sheet" "the" "sheet"
+[2,] "the dark"  "the" "dark" 
+
+[[3]]
+     [,1]        [,2]  [,3]   
+[1,] "the depth" "the" "depth"
+[2,] "a well"    "a"   "well" 
+
+[[4]]
+     [,1]        [,2] [,3]     
+[1,] "a chicken" "a"  "chicken"
+[2,] "a rare"    "a"  "rare"   
+
+[[5]]
+     [,1] [,2] [,3]
+
+> #치환
+> string
+[1] "data analytics is useful"                                
+[2] "business analytics is helpful"                           
+[3] "visualization of data is interesting for data scientists"
+> str_replace(string, "data", replacement = "text")
+[1] "text analytics is useful"                                
+[2] "business analytics is helpful"                           
+[3] "visualization of text is interesting for data scientists"
+> str_replace_all(string, "data", replacement = "text")
+[1] "text analytics is useful"                                
+[2] "business analytics is helpful"                           
+[3] "visualization of text is interesting for text scientists"
+> #분할
+> str_split(string, " ")
+[[1]]
+[1] "data"      "analytics" "is"        "useful"   
+
+[[2]]
+[1] "business"  "analytics" "is"        "helpful"  
+
+[[3]]
+[1] "visualization" "of"            "data"          "is"            "interesting"   "for"          
+[7] "data"          "scientists"   
+
+> unlist(str_split(string, " "))
+ [1] "data"          "analytics"     "is"            "useful"        "business"      "analytics"    
+ [7] "is"            "helpful"       "visualization" "of"            "data"          "is"           
+[13] "interesting"   "for"           "data"          "scientists"   
+> unique(unlist(str_split(string, " ")))
+ [1] "data"          "analytics"     "is"            "useful"        "business"      "helpful"      
+ [7] "visualization" "of"            "interesting"   "for"           "scientists"   
+> str_split(string, " ")
+[[1]]
+[1] "data"      "analytics" "is"        "useful"   
+
+[[2]]
+[1] "business"  "analytics" "is"        "helpful"  
+
+[[3]]
+[1] "visualization" "of"            "data"          "is"            "interesting"   "for"          
+[7] "data"          "scientists"   
+
+> str_split(string, " ", n=3) #n은 분할 개수
+[[1]]
+[1] "data"      "analytics" "is useful"
+
+[[2]]
+[1] "business"   "analytics"  "is helpful"
+
+[[3]]
+[1] "visualization"                           "of"                                     
+[3] "data is interesting for data scientists"
+
+> str_split(string, " ", n=3, simplify = TRUE) #simplify=TRUE 행렬로 출력
+     [,1]            [,2]        [,3]                                     
+[1,] "data"          "analytics" "is useful"                              
+[2,] "business"      "analytics" "is helpful"                             
+[3,] "visualization" "of"        "data is interesting for data scientists"
+> #공백포함 길이
+> str_length(string)
+[1] 24 29 56
+> #특정문자 출현 횟수
+> str_count(string, "data")
+[1] 1 0 2
+> str_count(string, "\\w+") #단어개수
+[1] 4 4 8
+> #padding
+> str_pad(string=c("a","abc","abcde"), width = 6, side = "left", pad = " ")
+[1] "     a" "   abc" " abcde"
+> str_pad(string=c("a","abc","abcde"), width = 10, side = "right", pad = "*")
+[1] "a*********" "abc*******" "abcde*****"
+> mon <- 1:12
+> mon
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12
+> str_pad(mon, width = 2, side = "left", pad = "0")
+ [1] "01" "02" "03" "04" "05" "06" "07" "08" "09" "10" "11" "12"
+> #양쪽에 공백을 삭제
+> str_trim()
+Error in stri_trim_both(string) : 
+  argument "string" is missing, with no default
+> string <- c("data analytics is useful", 
++             "business analytics is helpful",
++             "visualization of data is interesting for data scientists")
+> str_pad1 <- str_pad(string, width = max(str_length(string)), side = "both", pad = " ")
+> str_pad1
+[1] "                data analytics is useful                "
+[2] "             business analytics is helpful              "
+[3] "visualization of data is interesting for data scientists"
+> str_trim(str_pad1, side = "both")
+[1] "data analytics is useful"                                
+[2] "business analytics is helpful"                           
+[3] "visualization of data is interesting for data scientists"
+
+
+
+> #base패키지의 paste()
+> #text결합
+> str_c("data", "mining",sep=" ")
+[1] "data mining"
+> #붙이는 벡터의 원소 수가 다를 때 재사용 규칙을 따른다
+> str.mining <- str_c(c("data mining", "text mining"),
++                     "is useful", sep=" ")
+> str.mining
+[1] "data mining is useful" "text mining is useful"
+> str_c(str.mining, collapse = ";")
+[1] "data mining is useful;text mining is useful"
+> str_c(str.mining, collapse = "\n")
+[1] "data mining is useful\ntext mining is useful"
+> cat(str_c(str.mining, collapse = "\n"))
+data mining is useful
+text mining is useful
+> #문자열 일부 추출
+> str_sub(string=str.mining, start=1, end = 4)
+[1] "data" "text"
+> #문자열 일부 대체,치환
+> str_sub(str.mining, 5,5) <- "-"
+> str.mining
+[1] "data-mining is useful" "text-mining is useful"
+> #start, end위치에 -숫자 넣으면 문자 끝부터 
+> str_sub("abcdefg", -2)
+[1] "fg"
+> str_sub("abcdefg", end=-3)
+[1] "abcde"

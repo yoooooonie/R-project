@@ -1,0 +1,136 @@
+
+> load("C:/ymyang/.RData")
+> round(4.5)
+[1] 4
+> 3/0
+[1] Inf
+> 5-Inf
+[1] -Inf
+> Inf*Inf
+[1] Inf
+> Inf*(-Inf)
+[1] -Inf
+> a <- Inf
+> is.infinite(a)
+[1] TRUE
+> 1.8*10.^308 #컴퓨터가 인지할 수 있는 가장 큰 수. 이 수 이상은 무한대로 인지
+[1] Inf
+> is.infinite(10^(305:310))
+[1] FALSE FALSE FALSE FALSE  TRUE  TRUE
+> Inf/Inf
+[1] NaN
+> Inf*0
+[1] NaN
+> ls.nan(NaN+3)
+Error in ls.nan(NaN + 3) : could not find function "ls.nan"
+> is.NaN(NaN+3)
+Error in is.NaN(NaN + 3) : could not find function "is.NaN"
+> is.nan(NaN+3)
+[1] TRUE
+> #결측값 = NA  Not Available
+> k <- NA
+> sqrt(k)
+[1] NA
+> is.na(k)
+[1] TRUE
+> is.na(z)
+[1] FALSE FALSE FALSE FALSE FALSE
+> k == NA
+[1] NA
+> is.na(NaN)
+[1] TRUE
+> is.nan(NA)
+[1] FALSE
+> z <- 1:5
+> sum(z)
+[1] 15
+> prod(z) #곱하기
+[1] 120
+> max(z)
+[1] 5
+> min(z)
+[1] 1
+> mode(z)
+[1] "numeric"
+> mean(z)
+[1] 3
+> median(z)
+[1] 3
+> range(z)
+[1] 1 5
+> sd(z) #표준편차? 분산?
+[1] 1.581139
+> #벡터에 NA 값이 있는 경우 NA로 반환하기에 먼저 설정해야함
+> w <- c(1,2,3,4,5,NA)
+> sum(w)
+[1] NA
+> sum(w, na.rm = TRUE)
+[1] 15
+> sum(na.omit(w))
+[1] 15
+> v <- c(NA, NA, NA, NA, NA)
+> v
+[1] NA NA NA NA NA
+> sum(v, na.rm = TRUE)
+[1] 0
+> prod(v, na.rm = TRUE)
+[1] 1
+> max(v, na.rm = TRUE)
+[1] -Inf
+Warning message:
+In max(v, na.rm = TRUE) : no non-missing arguments to max; returning -Inf
+> min(v, na.rm = TRUE)
+[1] Inf
+Warning message:
+In min(v, na.rm = TRUE) : no non-missing arguments to min; returning Inf
+
+> traffic.death <- c(842,729,786,751,844,851,702)
+> cumsum(traffic.death)#누적썸
+[1]  842 1571 2357 3108 3952 4803 5505
+> cumprod(c(1,2,3,4))#누적곱
+[1]  1  2  6 24
+> #결측값을 빼고 계산되지 않음
+> cummax(c(1,3,5,NA))#누적
+[1]  1  3  5 NA
+> #결측값을 빼고 계산되지 않음
+> cumsum(c(1,3,5,NA))#누적
+[1]  1  4  9 NA
+> #결측값을 빼고 계산되지 않음
+> cumsum(c(1,3,5,NA,3))#누적
+[1]  1  4  9 NA NA
+> diff(traffic.death)
+[1] -113   57  -35   93    7 -149
+> traffic.death
+[1] 842 729 786 751 844 851 702
+> diff(traffic.death)  #뒷자리에서 앞자리 뺀것들의 벡터로 나옴
+[1] -113   57  -35   93    7 -149
+> diff(c(1,3,5,NA,3))
+[1]  2  2 NA NA
+> diff(1:5, lag=2)#2칸씩 떨어진 것의 차이를 구함
+[1] 2 2 2
+> p <- 1:10
+> q <- 6:15
+> union(p,q)#합집합
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+> intersect(p,q)#교집합
+[1]  6  7  8  9 10
+> setdiff(p,q)#차집합
+[1] 1 2 3 4 5
+> setdiff(q,p)#차집합
+[1] 11 12 13 14 15
+> setequal(p,q)
+[1] FALSE
+> setequal(q,p)
+[1] FALSE
+> setdiff(p,q)
+[1] 1 2 3 4 5
+> p
+ [1]  1  2  3  4  5  6  7  8  9 10
+> is.element(setdiff(p,q),p)
+[1] TRUE TRUE TRUE TRUE TRUE
+> setdiff(p,q)
+[1] 1 2 3 4 5
+> q
+ [1]  6  7  8  9 10 11 12 13 14 15
+> is.element(setdiff(p,q),q)
+[1] FALSE FALSE FALSE FALSE FALSE
