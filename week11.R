@@ -364,7 +364,7 @@ iris.cut <- cut(x=iris$Sepal.Width, breaks=c(0,1,2,3,4,5))
 table(iris.cut)
 summary(iris.cut)
 
-#table 열에 이름 지정정
+#table 열에 이름 지정
 iris.cut <- cut(x=iris$Sepal.Width,
                 breaks = c(0,1,2,3,4,5),
                 labels = c("smaller","small","medium","big","biger"))
