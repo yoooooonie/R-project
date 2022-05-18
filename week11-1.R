@@ -74,3 +74,38 @@ head(iris)
 gg<- unstack(data.frame(iris$Sepal.Length, iris$Species))
 head(gg)
 str(gg)
+summary(gg)
+
+
+tapply(X=iris$Sepal.Length, INDEX = iris$Species, FUN=mean)
+tapply(X=iris$Sepal.Length, INDEX = iris$Species, FUN=length)
+
+str(mtcars)
+with(mtcars,tapply(mpg, list(cyl ,am), mean))
+with(mtcars,tapply(mpg, list(Cylincer=cyl ,Transmission=am), mean))
+
+
+with(mtcars, 
+     aggregate(x=mpg, by=list(Cylincer=cyl ,Transmission=am), 
+                       FUN=mean))
+
+aggregate(mtcars[1:6], list(Group.cyl=mtcars$cyl ,Group.am=mtcars$am), 
+               FUN=mean)
+
+
+aggregate(iris[1:4], list(Species=iris$Species), mean)
+
+
+
+by(data=iris, INDICES = iris$Species, FUN=summary)
+by(iris, iris$Species, function(x) mean(x$Sepal.Length))
+
+#범주형 변수가 주어지면 변수가 몇개인가 알려줌
+table(mtcars$gear)
+table(mtcars$am)
+table(mtcars$am, mtcars$gear)
+
+#균일한 구간으로 나눔
+mpg.cut <- cut(mtcars$mpg, breaks = 5)
+#범주형 변수가 주어지면 변수가 몇개인가 알려줌
+table(mpg.cut)
