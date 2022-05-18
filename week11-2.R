@@ -120,3 +120,64 @@ air <- airquality %>%
             Mean.Temp=mean(Temp, na.rm=TRUE)) %>%
   filter(Mean.ozone>40 | Mean.Temp>80)
 air
+
+
+#조인
+df1 <- data.frame(x=1:6, y=month.name[1:6])
+df2 <- data.frame(x=7:12, y=month.name[7:12])
+df1
+df2
+#base package의 rbind와 같음
+df3 <- bind_rows(df1, df2)
+df3
+
+df4 <- data.frame(z=month.abb)
+df4
+#열의 방향으로 결합, #base package의 cbind와 같음
+df5 <- bind_cols(df3, df4)
+df5
+cbind(df3,df4)
+
+#inner join 공통열을 포함하는 데이터셋이 생성됨 교집합
+band_members
+band_instruments
+#by 인수를 지정안하면 모든 열을 조인함
+inner_join(band_members, band_instruments)
+#by 인수를 지정
+inner_join(band_members, band_instruments, by="name")
+
+#outer join 한쪽 데이터셋에만 있어도 포함 합집합
+left_join(band_members, band_instruments, by="name")#왼쪽 데이터셋 기준
+right_join(band_members, band_instruments, by="name")#오른쪽 데이터셋 기준
+full_join(band_members, band_instruments, by="name")#왼쪽,오른쪽 둘 모두 데이터셋 기준
+#보통 left join을 처음에 고려함
+
+band_instruments2
+#행이름 다른경우 지정
+full_join(band_members, band_instruments2, by=c("name"="artist"))
+#행이름 유지하려면 
+full_join(band_members, band_instruments2, by=c("name"="artist"),keep=TRUE)
+
+#공통열이 일치하는 경우 추출
+semi_join(band_members, band_instruments, by="name")
+#공통열이 일치하지 않는 경우 추출
+anti_join(band_members, band_instruments, by="name")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
