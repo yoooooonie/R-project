@@ -192,3 +192,99 @@ mtcars %>%
   map(~lm(mpg~wt, data=.)) %>% 
   map(summary) %>% 
   map_dbl("r.squared")
+
+
+#purr map2()
+#여러인수를 가지고 있는 함수를 반복적용 해준다
+a <- list(1,2,3)
+map(.x=a, function(x) x*1.1)
+map_dbl(.x=a, function(x) x*1.1)
+
+map2_*() #2개
+pmap_*() #3개
+
+
+a <- list(1,2,3)
+b <- list(10,20,30)
+map2(.x=a, .y=b, .f=function(x,y) y-x)
+#fomular 형식
+map2(.x=a, .y=b, .f=~.y-.x)
+map2_dbl(.x=a, .y=b, .f=~.y-.x)
+#map2_int(.x=a, .y=b, .f=~.y-.x)
+
+set.seed(123)
+map2(b,a,rnorm, n=5) #b:평균, a:표준편차, 추출할 표본개수:5개
+?rnorm  #rnorm(n, mean = 0, sd = 1) 
+
+set.seed(123)
+list(rnorm(mean=10, sd=1, n=5),
+     rnorm(mean=20, sd=2, n=5),
+     rnorm(mean=30, sd=3, n=5)
+     )
+
+
+
+str(mtcars)
+by.am <- mtcars %>% 
+  split(.$am) 
+by.am
+
+models <- by.am %>% 
+  map(~lm(mpg~wt, data=.))
+models
+
+#예측값 구하기 predict 인수가 2개니까 map2
+map2(models, by.am, predict)
+list(predict(models$`0`, by.am$`0`))
+list(predict(models$`1`, by.am$`1`))
+
+#3개의 데이터셋을 활용
+a <- list(1,2,3)
+b <- list(10,20,30)
+c <- list(100,200,300)
+pmap(.l=list(a,b,c),.f=sum)
+pmap(list(a,b,c),sum)
+
+pmap_dbl(list(a,b,c), 
+         function(x,y,z) y-x+z)
+pmap(list(a,b,c), ~..2-..1+..3)
+
+pmap_dbl(list(alpha=a, beta=b, gamma=c),
+         function(gamma, beta, alpha) beta-alpha+gamma)
+
+plus <- function(x,y) x+y
+pmap_dbl(list(a,b,c), plus) #error
+plus2 <- function(x,y,...) x+y #가변 변수 선언가면 확장성 있음
+pmap_dbl(list(a,b,c), plus2)
+
+#무작위 표본 추출하기
+args <- list(mean=c(0,5,10),
+             sd=c(1,2,3),
+             n=c(1,3,5))
+set.seed(123)
+args %>% 
+  pmap(rnorm)
+
+set.seed(123)
+list(rnorm(mean=0, sd=1, n=1),
+     rnorm(mean=5, sd=2, n=3),
+     rnorm(mean=10, sd=3, n=5))
+
+#dataframe형식
+args.df <- data.frame(mean=c(0,5,10),
+             sd=c(1,2,3),
+             n=c(1,3,5))
+set.seed(123)
+args.df %>% 
+  pmap(rnorm)
+
+#list 이름 없이 넣으면 rnorm 인자 순서대로 인식 됨
+args2 <- list(c(0,5,10),
+             c(1,2,3),
+             c(1,3,5))
+set.seed(123)
+args2 %>% 
+  pmap(rnorm)
+?rnorm
+
+
