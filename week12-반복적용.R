@@ -288,3 +288,46 @@ args2 %>%
 ?rnorm
 
 
+
+
+#reduce
+library(purrr)
+#1,3에 적용 다음 5에 적용 다음 7에 적용
+reduce(.x=c(1,3,5,7), .f=`*`) #연산자는 백틱? esc 아래키로 감싸서 사용
+
+paste2 <- function(u,v,sep=".") paste(u, v, sep=sep)
+letters[1:4] %>% 
+  reduce(paste2)
+
+dfs <- list(data.frame(name="Superman", age=30),
+            data.frame(name=c("Spiderman","Wonderwoman"), sex=c("M","F")),
+            data.frame(name="Batman", grade="A"))
+dfs            
+
+library(dplyr)
+dfs %>% 
+  reduce(.f=bind_rows)
+
+#교집합찾기
+vs <- list(c(1,3,5,6,7,8,10),
+           c(2,3,7,8,10),
+           c(1,2,3,5,7,9,10))
+vs
+vs %>% 
+  reduce(intersect)
+
+set.seed(123)
+x <- sample(10)
+x
+x %>% 
+  reduce(`+`)
+x %>% 
+  accumulate(`+`) #과정을 볼 수 있다
+
+#3개의 인수를 전달할 수 있다.
+paste2 <- function(u,v,sep=".") paste(u, v, sep=sep)
+letters[1:4] %>% 
+  reduce(paste2)
+
+reduce2(.x=letters[1:4],.y=c("-",".","-"),.f=paste2)
+accumulate2(.x=letters[1:4],.y=c("-",".","-"),.f=paste2) #과정을 볼 수 있다
