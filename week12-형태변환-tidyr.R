@@ -115,3 +115,4 @@ mtcars.m$model
 mtcars.m %>% 
   transmute(cyl, beta=map_dbl(model, ~coefficients(.)[[2]])) %>% 
   ungroup()
+
