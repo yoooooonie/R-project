@@ -200,8 +200,8 @@ a <- list(1,2,3)
 map(.x=a, function(x) x*1.1)
 map_dbl(.x=a, function(x) x*1.1)
 
-map2_*() #2개
-pmap_*() #3개
+map2_*() #인수 2개
+pmap_*() #인수 3개
 
 
 a <- list(1,2,3)
