@@ -61,7 +61,7 @@ aq.long <- pivot_longer(airquality,
                         cols = Ozone:Temp,
                         names_to = "Factor",
                         values_to = "Measurement")
-head(aq.long)
+head(aq.long)q~%
 
 #long to wide
 ?pivot_wider
@@ -98,6 +98,7 @@ iris.nested$petal
 #group by 
 head(mtcars)
 library(dplyr)
+library(tidyr) #nest()
 mtcars.n <- mtcars %>% 
   group_by(cyl) %>% 
   nest()
