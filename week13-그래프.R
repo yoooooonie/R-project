@@ -288,12 +288,69 @@ par("mai")
 
 
 par("mar")
-old.par <- par(mai=c(5,4,4,2)+0.2)
+old.par <- par(mai=c(5,4,4,2)+0.2)#바꾸기 전 값 넣어두기
 par("mar")
 par(old.par)
 par("mar")
 
 
+#그래프 영역 설정
+# xlim()
+# ylim()
+# range()함수로 결정해서 그래프 영역 설정
+
+x1 <- 1:10
+y1 <- log(x1)
+x2 <- 1:10
+y2 <- sqrt(x2)
+
+plot(x1,y2,type = "l", col="red", xlab="X",ylab="Y")
+lines(x2, y2, lty="dashed", col="blue")
+
+range(y1)
+range(y2)
+
+xlim <- range(c(x1, x2))
+ylim <- range(c(y1, y2))
+plot(x1, y1, xlim=xlim, ylim=ylim,
+     type = "l", col="red", xlab="X",ylab="Y")
+lines(x2, y2, lty="dashed", col="blue")
 
 
+#창에서 여러 그래프 보여주기 행부터 채워짐
+par("mfrow")
+old.par <- par(mfrow=c(2,2))
+par("mfrow")
+plot(faithful, pch=19, col="blue", main="First:Old Faithful")
+plot(pressure, type="l", col="red", main="Second")
+plot(LakeHuron,  col="green", lwd=2, main="Third")
+plot(ToothGrowth$supp, ToothGrowth$len, col="orange", main="Fourth")
 
+#열 기준으로 그래프 넣으려면
+old.par <- par(mfcol=c(2,2))
+par("mfcol")
+plot(faithful, pch=19, col="blue", main="First:Old Faithful")
+plot(pressure, type="l", col="red", main="Second")
+plot(LakeHuron,  col="green", lwd=2, main="Third")
+plot(ToothGrowth$supp, ToothGrowth$len, col="orange", main="Fourth")
+
+#그래프 넣는 순서 지정할 수 있음, 행렬형태로 설정
+matrix(c(1,1,4,2,3,4), 2,3,byrow = TRUE)
+old.par <- par(no.readonly = TRUE) #기존의 설정 저장
+layout(matrix(c(1,1,4,2,3,4), 2,3,byrow = TRUE))
+layout.show(4)
+plot(faithful, pch=19, col="blue", main="First:Old Faithful")
+plot(pressure, type="l", col="red", main="Second")
+plot(LakeHuron,  col="green", lwd=2, main="Third")
+plot(ToothGrowth$supp, ToothGrowth$len, col="orange", main="Fourth")
+par(old.par)
+
+#행의 높이와 열의 폭 설정
+old.par <- par(no.readonly = TRUE) #기존의 설정 저장
+layout(matrix(c(1,1,4,2,3,4), 2,3,byrow = TRUE), 
+       widths = c(1,1,1.5), height=c(2,1))#행의 높이와 열의 폭 설정
+plot(faithful, pch=19, col="blue", main="First:Old Faithful")
+plot(pressure, type="l", col="red", main="Second")
+plot(LakeHuron,  col="green", lwd=2, main="Third")
+plot(ToothGrowth$supp, ToothGrowth$len, col="orange", main="Fourth")
+par(old.par)
