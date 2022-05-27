@@ -354,3 +354,115 @@ plot(pressure, type="l", col="red", main="Second")
 plot(LakeHuron,  col="green", lwd=2, main="Third")
 plot(ToothGrowth$supp, ToothGrowth$len, col="orange", main="Fourth")
 par(old.par)
+
+#그래프 요소 추가
+plot(faithful,
+     main="Old Faithful Geyser",
+     sub="Yellowstone National Park",
+     xlab="Eruption time(m)",
+     ylab="Waiting time(m)",
+     xlim=c(1,6), ylim=c(40,100),
+     las=1, bty="l", pch=21, col="dimgray", bg="maroon",
+     family="serif", 
+     font.main=4, font.sub=3, font.axis=2,
+     cex.main=1.5, cex.lab=1.0, cex.axis=0.75,
+     col.main="tomato", col.sub="orange",
+     col.lab="firebrick", col.axis="khaki4")
+
+
+#제목과 축 (저수준 함수에서)
+?title
+?par
+#고수준 함수에서 제목과 축을 설정할 수 있는데, 저수준함수에서 하려면 일단 고수준함수 선언할 때 
+#ann 옵션에 FALSE로 선언
+?axis
+#사용자가 축 설정할 수 있음 
+
+str(state.x77)
+states <- data.frame(state.x77)
+attach(states)
+
+old.par <- par(no.readonly = TRUE) #기존의 설정 저장
+par()
+par(mar=c(5,4,4,8)+0.2)
+
+plot(Murder, Life.Exp, pch=20, col="tomato", ylim=c(35, 75),
+     yaxt="n",col.axis="darkorchid4",
+     cex.axis=0.75, ann=FALSE)
+points(Murder, HS.Grad, pch=22, col="blue", bg="skyblue")
+
+axis(side=2, at=seq(68,76,2), labels = seq(68,76,2),
+     col.axis="red",cex.axis=0.75, las=2)
+axis(side = 4, at=seq(35,70,5), labels = seq(35,70,5),
+     col.axis="blue",cex.axis=0.75, las=2, tck=-0.02) #tck 를 음수로 지정하여 그래프 바깥쪽으로 나오도록 한다.
+
+mtext(text = "High School \nGraduates\n(percent)",
+      side = 4, line = 3, cex = 0.9, las=2, col = "tan4")
+title(main="Murder vs. Life Expectancy vs. High School Graduates",
+      xlab="Murder(rate per 100,000 population)",
+      ylab="Life Expectancy(years)",
+      col.main="maroon", col.lab="tan4", cex.lab=0.9)
+
+par(old.par)
+detach(states)
+
+
+
+#범례
+?legend
+# "bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right" and "center"
+#inset 옵션 같이 지정 가능
+
+
+str(Orange)
+tree1 <- subset(Orange, Tree==1)
+tree2 <- subset(Orange, Tree==2)
+
+xlim <- range(c(tree1$age, tree2$age))
+ylim <- range(c(tree1$circumference, tree2$circumference))
+
+plot(tree1$age, tree1$circumference, type="b",
+     xlim=xlim, ylim=ylim, 
+     pch=16, lty=1, col="red",
+     main="Growth of Orange Tree",
+     xlab="Age(days)", ylab="Circumference(mm)")
+lines(tree2$age, tree2$circumference, type = "b",
+      pch=15, lty=2, col="blue")
+
+#범례추가
+legend("topleft", inset = 0.05, title="Tree ID",
+       legend = c("Tree 1", "Tree 2"), 
+       lty = c(1,2), 
+       pch=c(16,15), 
+       col=c("red", "blue"))
+
+#그래프 요소 추가 보조눈금
+#install.packages("Hmisc")
+library(Hmisc)
+minor.tick(nx=3, ny=3, tick.ratio = 0.5)#눈금 사이 지정, tick.ratio=0.5 주 눈금의 50프로
+
+
+#텍스트
+?text
+
+plot(1:5, 1:5, type="n", xaxt="n", yaxt="n",ann=FALSE) #출력 다 안해해
+text(2,2, font=1, col="red", cex=1.0,
+     labels="Default text:Sans text with plain(font=1)")
+text(3,3, font=2, col="darkgreen", cex=1.2, family="mono",
+     labels="Mono text with bold(font=2)")
+text(4,4, font=3, col="blue", cex=1.4, family="serif",
+     labels="Serif text with italic(font=3)")
+text(2,4, font=2, col="blue", cex=1.4, family="HersheyScript",
+     labels="HersheScript text (srt=25)", srt=25)
+mtext(text="Windows Fonts:Sans, Mono, Serif, and HersheyScript",
+      side=1, line=1, col="deeppink")
+
+
+str(mtcars)
+attach(mtcars)
+plot(wt, mpg, pch=19, col="royalblue",
+     main="Car Mileage vs. Car Weight",
+     xlab="Weight(1,1000lbs)", ylab = "Mileage(Miles per Gallon)")
+text(wt, mpg, row.names(mtcars), cex = 0.6, pos=4, col="maroon")
+detach(mtcars)
+
