@@ -1,73 +1,73 @@
 #week13 
-#ê·¸ë˜í”½
-#graphics íŒ¨í‚¤ì§€ê°€ ê¸°ë³¸ìœ¼ë¡œ ì„¤ì¹˜ë˜ì–´ ìˆë‹¤
+#±×·¡ÇÈ
+#graphics ÆĞÅ°Áö°¡ ±âº»À¸·Î ¼³Ä¡µÇ¾î ÀÖ´Ù
 #volcano eruption data
 str(faithful)
 
-plot(faithful) #ê³ ìˆ˜ì¤€
+plot(faithful) #°í¼öÁØ
 
 eruptions.long <- faithful[faithful$eruptions>3,]
-points(eruptions.long, col="red", pch=19) #ì €ìˆ˜ì¤€, ê³ ìˆ˜ì¤€ì´ ë¨¼ì € ìˆ˜í–‰ë˜ì–´ ìˆì–´ì•¼ í•¨
-#points(eruptions.long, col="red"#ìƒ‰ê¹” pch=19#ëª¨ì–‘)
-dev.off() #ì‚­ì œ
+points(eruptions.long, col="red", pch=19) #Àú¼öÁØ, °í¼öÁØÀÌ ¸ÕÀú ¼öÇàµÇ¾î ÀÖ¾î¾ß ÇÔ
+#points(eruptions.long, col="red"#»ö±ò pch=19#¸ğ¾ç)
+dev.off() #»èÁ¦
 
 
-#íšŒê·€ì„ 
+#È¸±Í¼±
 faithful.lm <- lm(waiting ~ eruptions, data=faithful)
-lines(x=faithful$eruptions, y=fitted(faithful.lm), col="blue") #ì €ìˆ˜ì¤€
-#ìˆ˜ì§ì„ 
-abline(v=3, col="purple") #v=3ì¸ ê³³ì— ìˆ˜ì§ì„ 
-#í‰ê· ì„ 
+lines(x=faithful$eruptions, y=fitted(faithful.lm), col="blue") #Àú¼öÁØ
+#¼öÁ÷¼±
+abline(v=3, col="purple") #v=3ÀÎ °÷¿¡ ¼öÁ÷¼±
+#Æò±Õ¼±
 abline(h=mean(faithful$waiting), col="green")
 abline(faithful.lm, col="pink")
 ?abline
 
-#ê·¸ë˜í”„ ìƒì„± ë° ì €ì¥
+#±×·¡ÇÁ »ı¼º ¹× ÀúÀå
 str(cars)
 plot(cars)
 plot(cars$speed, cars$dist)
 
-#xì¶•ì´ factorì¸ ê²½ìš°
+#xÃàÀÌ factorÀÎ °æ¿ì
 str(ToothGrowth)
-plot(ToothGrowth$supp, ToothGrowth$len) #ìƒëŒ€ë„í‘œ í˜•íƒœë¡œ ë‘ ì§‘ë‹¨ë³„ ë¶„í¬ê°€ ë³´ì„
+plot(ToothGrowth$supp, ToothGrowth$len) #»ó´ëµµÇ¥ ÇüÅÂ·Î µÎ Áı´Üº° ºĞÆ÷°¡ º¸ÀÓ
 
-#dataframe ì œê³µí•œ ê²½ìš° ì‚°ì ë„ ê·¸ë ¤ì§ matrix í˜•íƒœë¡œ 
+#dataframe Á¦°øÇÑ °æ¿ì »êÁ¡µµ ±×·ÁÁü matrix ÇüÅÂ·Î 
 str(iris)
 plot(iris[,1:4])
 
-#ì‹œê³„ì—´ë°ì´í„°ì¸ ê²½ìš°
+#½Ã°è¿­µ¥ÀÌÅÍÀÎ °æ¿ì
 str(nhtemp)
 plot(nhtemp)
 
-#ëª¨ìì´í¬ ë„í‘œ
-#ë²„í´ë¦¬ëŒ€í•™ ì…í•™ ë°ì´í„°
+#¸ğÀÚÀÌÅ© µµÇ¥
+#¹öÅ¬¸®´ëÇĞ ÀÔÇĞ µ¥ÀÌÅÍ
 str(UCBAdmissions)
 plot(UCBAdmissions)
 
-#ëª¨ë¸ê°ì²´ë„ ê·¸ë¦¼ ê·¸ë ¤ì¤Œ
-#íšŒê·€ëª¨í˜•
+#¸ğµ¨°´Ã¼µµ ±×¸² ±×·ÁÁÜ
+#È¸±Í¸ğÇü
 str(faithful)
 faithful.lm <- lm(waiting ~ eruptions, data = faithful)
 class(faithful.lm)
 plot(faithful.lm)
 
-#ê·¸ë˜í”„ íŒŒì¼ë¡œ ì €ì¥í•˜ê¸°
+#±×·¡ÇÁ ÆÄÀÏ·Î ÀúÀåÇÏ±â
 plot(faithful)
-#rstudio í™”ë©´ì—ì„œ export
-#í™•ì¸í•˜ê¸°
+#rstudio È­¸é¿¡¼­ export
+#È®ÀÎÇÏ±â
 list.files(pattern = "Rplot.jpeg")
 library(pander)
 openFileInOS("Rplot.jpeg")
 
 
-#ìƒˆë¡œìš´ ìœˆë„ìš° ì°½ ë§Œë“¤ì–´ì„œ ê±°ê¸°ì— ì¶œë ¥í•˜ê³  ì €ì¥í•¨. ì—´ì–´ì„œ í™•ì¸ê¹Œì§€
+#»õ·Î¿î À©µµ¿ì Ã¢ ¸¸µé¾î¼­ °Å±â¿¡ Ãâ·ÂÇÏ°í ÀúÀåÇÔ. ¿­¾î¼­ È®ÀÎ±îÁö
 windows(width = 12, height=8)
 plot(faithful)
 savePlot(filename = "Rplot2", type = "pdf")
 list.files(pattern = "Rplot2.pdf")
 openFileInOS("Rplot2.pdf")
 
-#ì•„ë˜ í•¨ìˆ˜ë“¤ ì‚¬ìš© ê°€ëŠ¥
+#¾Æ·¡ ÇÔ¼öµé »ç¿ë °¡´É
 ?png
 ?pdf
 ?postscript
@@ -82,10 +82,10 @@ openFileInOS("Rplot3.png")
 
 
 
-#ê·¸ë˜í”„ íŒŒë¼ë¯¸í„° ì„¤ì •
+#±×·¡ÇÁ ÆÄ¶ó¹ÌÅÍ ¼³Á¤
 plot(faithful)
 
-#ì œëª©ê³¼ ì¶•
+#Á¦¸ñ°ú Ãà
 plot(faithful,
      main="Old Faithful Geyser",
      sub="Yellowstone National Park",
@@ -101,7 +101,7 @@ plot(faithful, las=2)
 plot(faithful, las=3)
 
 
-#í…Œë‘ë¦¬
+#Å×µÎ¸®
 ?par
 #"o" (the default), "l", "7", "c", "u", or "]" 
 plot(faithful, bty="o")
@@ -110,16 +110,16 @@ plot(faithful, bty="l")
 plot(faithful, bty="]")
 
 
-#ì‹¬ë³¼ê³¼ ì„ 
-?pch : ì‹¬ë³¼
-#21~25ë²ˆì€ í…Œë‘ë¦¬ì™€ ìƒ‰ê¹” ë”°ë¡œ ì§€ì • ê°€ëŠ¥
+#½Éº¼°ú ¼±
+?pch : ½Éº¼
+#21~25¹øÀº Å×µÎ¸®¿Í »ö±ò µû·Î ÁöÁ¤ °¡´É
 plot(faithful, pch=3)
 plot(faithful, pch=8, col="green")
 plot(faithful, pch=25, col="red", bg="purple")
 
-#lty : ì„ 
+#lty : ¼±
 #(0=blank, 1=solid (default), 2=dashed, 3=dotted, 4=dotdash, 5=longdash, 6=twodash)
-str(LakeHuron) #ì‹œê³„ì—´
+str(LakeHuron) #½Ã°è¿­
 plot(LakeHuron) #solid
 plot(LakeHuron, lty="dotted")
 plot(LakeHuron, lty="dashed")
@@ -127,16 +127,16 @@ plot(LakeHuron, lty="dotdash")
 plot(LakeHuron, lty=8)
 
 
-#ê·¸ë˜í”„ ìœ í˜• 
+#±×·¡ÇÁ À¯Çü 
 ?plot
 # "p" for points,
 # "l" for lines,
 # "b" for both,
 # "c" for the lines part alone of "b",
-# "o" for both â€˜overplottedâ€™,
-# "h" for â€˜histogramâ€™ like (or â€˜high-densityâ€™) vertical lines,
+# "o" for both ¡®overplotted¡¯,
+# "h" for ¡®histogram¡¯ like (or ¡®high-density¡¯) vertical lines,
 # "s" for stair steps,
-# "S" for other steps, see â€˜Detailsâ€™ below,
+# "S" for other steps, see ¡®Details¡¯ below,
 # "n" for no plotting.
 
 str(pressure)
@@ -149,9 +149,9 @@ plot(pressure, type="o")
 x <- 1:10
 y1 <- exp(1:10)
 y2 <- exp(10:1)
-plot(x,y1, xlab = "x", ylab="y", type="n")#ê³ ìˆ˜ì¤€
-lines(x, y1, type = "o", pch=21, col="red")#ì €ìˆ˜ì¤€
-lines(x, y2, type = "o", pch=22, col="blue")#ì €ìˆ˜ì¤€
+plot(x,y1, xlab = "x", ylab="y", type="n")#°í¼öÁØ
+lines(x, y1, type = "o", pch=21, col="red")#Àú¼öÁØ
+lines(x, y2, type = "o", pch=22, col="blue")#Àú¼öÁØ
 
 
 
@@ -165,7 +165,7 @@ plot(faithful, pch=19, col="blue")
 grid()
 
 
-#ìƒ‰ìƒ
+#»ö»ó
 #google.com search "colors in r"
 colors()
 palette()
@@ -173,16 +173,16 @@ palette(rainbow(6))
 palette()
 palette("default")
 palette()
-#col="white", col="#FFFFFF", col=rgb(1,1,1), col=hsv(0,0,1)#ì±„ë„ìƒ‰ì¡°ëª…ë„
+#col="white", col="#FFFFFF", col=rgb(1,1,1), col=hsv(0,0,1)#Ã¤µµ»öÁ¶¸íµµ
 
 n <- 12
-pie(rep(1, n), col=1:n) #8ê°€ì§€ ë“¤ì–´ìˆìŒ
+pie(rep(1, n), col=1:n) #8°¡Áö µé¾îÀÖÀ½
 
-#ê·¸ë¼ë°ì´ì…˜
+#±×¶óµ¥ÀÌ¼Ç
 rainbow()
-hear.colors() #ë¹¨+ë…¸
-terrain.colors() #ì´ˆ+íŒŒ+ë…¸
-topo.colors()#ì´ˆ+íŒŒ+ë…¸
+hear.colors() #»¡+³ë
+terrain.colors() #ÃÊ+ÆÄ+³ë
+topo.colors()#ÃÊ+ÆÄ+³ë
 cm.colors() #cyan +mazenta
 gray()
 
@@ -195,7 +195,7 @@ pie(rep(1, n), col=gray(level = seq(0,1,length=n),
 
 pie(rep(1, n), col=rainbow(n, alpha = seq(0,1,length=n))) 
 
-#ë‹¤ì–‘í•œ ìƒ‰
+#´Ù¾çÇÑ »ö
 library(RColorBrewer)
 ?RColorBrewer
 display.brewer.all()
@@ -213,9 +213,9 @@ plot(faithful,pch=21, col="tomato",
      xlab="Eruption time(m)",
      ylab="Waiting time(m)",
      col.main="navy", col.sub="purple",col.lab="royalblue",col.axis="brown"
-     )
+)
 
-#í¬ê¸°
+#Å©±â
 #ces
 x <- seq(0.5,1.5,0.25)
 y <- rep(1, length(x))
@@ -228,11 +228,11 @@ plot(x,y,pch=19, cex=x,col="green",
      main="Effects of cex on symbol and text size",
      cex.main=1.5, cex.lab=1.0, cex.axis=0.75)
 
-#ì„ ì˜ ë‘ê»˜
+#¼±ÀÇ µÎ²²
 plot(LakeHuron, lwd=1)
 plot(LakeHuron, lwd=3)
 
-#ê¸€ê¼´, ê¸€ì”¨ì²´
+#±Û²Ã, ±Û¾¾Ã¼
 windowsFonts()
 plot(faithful,pch=21, col="tomato",
      main="Old Faithful Geyser",
@@ -241,7 +241,7 @@ plot(faithful,pch=21, col="tomato",
      ylab="Waiting time(m)",
      family="sans")
 
-#ê¸°ì¡´ ê¸€ê¼´ ë³€ê²½í•˜ê¸°
+#±âÁ¸ ±Û²Ã º¯°æÇÏ±â
 windowsFonts(
   A=windowsFont("Arial Black"),
   B=windowsFont("Book Antiqua"),
@@ -269,7 +269,7 @@ plot(faithful,pch=21, col="cornflowerblue",
 
 
 
-#ê·¸ë˜í”„ ë°°ì¹˜
+#±×·¡ÇÁ ¹èÄ¡
 windows()
 windows(width = 12, height = 8)
 plot(faithful,pch=21, col="cornflowerblue",
@@ -288,16 +288,16 @@ par("mai")
 
 
 par("mar")
-old.par <- par(mai=c(5,4,4,2)+0.2)#ë°”ê¾¸ê¸° ì „ ê°’ ë„£ì–´ë‘ê¸°
+old.par <- par(mai=c(5,4,4,2)+0.2)#¹Ù²Ù±â Àü °ª ³Ö¾îµÎ±â
 par("mar")
 par(old.par)
 par("mar")
 
 
-#ê·¸ë˜í”„ ì˜ì—­ ì„¤ì •
+#±×·¡ÇÁ ¿µ¿ª ¼³Á¤
 # xlim()
 # ylim()
-# range()í•¨ìˆ˜ë¡œ ê²°ì •í•´ì„œ ê·¸ë˜í”„ ì˜ì—­ ì„¤ì •
+# range()ÇÔ¼ö·Î °áÁ¤ÇØ¼­ ±×·¡ÇÁ ¿µ¿ª ¼³Á¤
 
 x1 <- 1:10
 y1 <- log(x1)
@@ -317,7 +317,7 @@ plot(x1, y1, xlim=xlim, ylim=ylim,
 lines(x2, y2, lty="dashed", col="blue")
 
 
-#ì°½ì—ì„œ ì—¬ëŸ¬ ê·¸ë˜í”„ ë³´ì—¬ì£¼ê¸° í–‰ë¶€í„° ì±„ì›Œì§
+#Ã¢¿¡¼­ ¿©·¯ ±×·¡ÇÁ º¸¿©ÁÖ±â ÇàºÎÅÍ Ã¤¿öÁü
 par("mfrow")
 old.par <- par(mfrow=c(2,2))
 par("mfrow")
@@ -326,7 +326,7 @@ plot(pressure, type="l", col="red", main="Second")
 plot(LakeHuron,  col="green", lwd=2, main="Third")
 plot(ToothGrowth$supp, ToothGrowth$len, col="orange", main="Fourth")
 
-#ì—´ ê¸°ì¤€ìœ¼ë¡œ ê·¸ë˜í”„ ë„£ìœ¼ë ¤ë©´
+#¿­ ±âÁØÀ¸·Î ±×·¡ÇÁ ³ÖÀ¸·Á¸é
 old.par <- par(mfcol=c(2,2))
 par("mfcol")
 plot(faithful, pch=19, col="blue", main="First:Old Faithful")
@@ -334,9 +334,9 @@ plot(pressure, type="l", col="red", main="Second")
 plot(LakeHuron,  col="green", lwd=2, main="Third")
 plot(ToothGrowth$supp, ToothGrowth$len, col="orange", main="Fourth")
 
-#ê·¸ë˜í”„ ë„£ëŠ” ìˆœì„œ ì§€ì •í•  ìˆ˜ ìˆìŒ, í–‰ë ¬í˜•íƒœë¡œ ì„¤ì •
+#±×·¡ÇÁ ³Ö´Â ¼ø¼­ ÁöÁ¤ÇÒ ¼ö ÀÖÀ½, Çà·ÄÇüÅÂ·Î ¼³Á¤
 matrix(c(1,1,4,2,3,4), 2,3,byrow = TRUE)
-old.par <- par(no.readonly = TRUE) #ê¸°ì¡´ì˜ ì„¤ì • ì €ì¥
+old.par <- par(no.readonly = TRUE) #±âÁ¸ÀÇ ¼³Á¤ ÀúÀå
 layout(matrix(c(1,1,4,2,3,4), 2,3,byrow = TRUE))
 layout.show(4)
 plot(faithful, pch=19, col="blue", main="First:Old Faithful")
@@ -345,17 +345,17 @@ plot(LakeHuron,  col="green", lwd=2, main="Third")
 plot(ToothGrowth$supp, ToothGrowth$len, col="orange", main="Fourth")
 par(old.par)
 
-#í–‰ì˜ ë†’ì´ì™€ ì—´ì˜ í­ ì„¤ì •
-old.par <- par(no.readonly = TRUE) #ê¸°ì¡´ì˜ ì„¤ì • ì €ì¥
+#ÇàÀÇ ³ôÀÌ¿Í ¿­ÀÇ Æø ¼³Á¤
+old.par <- par(no.readonly = TRUE) #±âÁ¸ÀÇ ¼³Á¤ ÀúÀå
 layout(matrix(c(1,1,4,2,3,4), 2,3,byrow = TRUE), 
-       widths = c(1,1,1.5), height=c(2,1))#í–‰ì˜ ë†’ì´ì™€ ì—´ì˜ í­ ì„¤ì •
+       widths = c(1,1,1.5), height=c(2,1))#ÇàÀÇ ³ôÀÌ¿Í ¿­ÀÇ Æø ¼³Á¤
 plot(faithful, pch=19, col="blue", main="First:Old Faithful")
 plot(pressure, type="l", col="red", main="Second")
 plot(LakeHuron,  col="green", lwd=2, main="Third")
 plot(ToothGrowth$supp, ToothGrowth$len, col="orange", main="Fourth")
 par(old.par)
 
-#ê·¸ë˜í”„ ìš”ì†Œ ì¶”ê°€
+#±×·¡ÇÁ ¿ä¼Ò Ãß°¡
 plot(faithful,
      main="Old Faithful Geyser",
      sub="Yellowstone National Park",
@@ -370,19 +370,19 @@ plot(faithful,
      col.lab="firebrick", col.axis="khaki4")
 
 
-#ì œëª©ê³¼ ì¶• (ì €ìˆ˜ì¤€ í•¨ìˆ˜ì—ì„œ)
+#Á¦¸ñ°ú Ãà (Àú¼öÁØ ÇÔ¼ö¿¡¼­)
 ?title
 ?par
-#ê³ ìˆ˜ì¤€ í•¨ìˆ˜ì—ì„œ ì œëª©ê³¼ ì¶•ì„ ì„¤ì •í•  ìˆ˜ ìˆëŠ”ë°, ì €ìˆ˜ì¤€í•¨ìˆ˜ì—ì„œ í•˜ë ¤ë©´ ì¼ë‹¨ ê³ ìˆ˜ì¤€í•¨ìˆ˜ ì„ ì–¸í•  ë•Œ 
-#ann ì˜µì…˜ì— FALSEë¡œ ì„ ì–¸
+#°í¼öÁØ ÇÔ¼ö¿¡¼­ Á¦¸ñ°ú ÃàÀ» ¼³Á¤ÇÒ ¼ö ÀÖ´Âµ¥, Àú¼öÁØÇÔ¼ö¿¡¼­ ÇÏ·Á¸é ÀÏ´Ü °í¼öÁØÇÔ¼ö ¼±¾ğÇÒ ¶§ 
+#ann ¿É¼Ç¿¡ FALSE·Î ¼±¾ğ
 ?axis
-#ì‚¬ìš©ìê°€ ì¶• ì„¤ì •í•  ìˆ˜ ìˆìŒ 
+#»ç¿ëÀÚ°¡ Ãà ¼³Á¤ÇÒ ¼ö ÀÖÀ½ 
 
 str(state.x77)
 states <- data.frame(state.x77)
 attach(states)
 
-old.par <- par(no.readonly = TRUE) #ê¸°ì¡´ì˜ ì„¤ì • ì €ì¥
+old.par <- par(no.readonly = TRUE) #±âÁ¸ÀÇ ¼³Á¤ ÀúÀå
 par()
 par(mar=c(5,4,4,8)+0.2)
 
@@ -394,7 +394,7 @@ points(Murder, HS.Grad, pch=22, col="blue", bg="skyblue")
 axis(side=2, at=seq(68,76,2), labels = seq(68,76,2),
      col.axis="red",cex.axis=0.75, las=2)
 axis(side = 4, at=seq(35,70,5), labels = seq(35,70,5),
-     col.axis="blue",cex.axis=0.75, las=2, tck=-0.02) #tck ë¥¼ ìŒìˆ˜ë¡œ ì§€ì •í•˜ì—¬ ê·¸ë˜í”„ ë°”ê¹¥ìª½ìœ¼ë¡œ ë‚˜ì˜¤ë„ë¡ í•œë‹¤.
+     col.axis="blue",cex.axis=0.75, las=2, tck=-0.02) #tck ¸¦ À½¼ö·Î ÁöÁ¤ÇÏ¿© ±×·¡ÇÁ ¹Ù±ùÂÊÀ¸·Î ³ª¿Àµµ·Ï ÇÑ´Ù.
 
 mtext(text = "High School \nGraduates\n(percent)",
       side = 4, line = 3, cex = 0.9, las=2, col = "tan4")
@@ -408,10 +408,10 @@ detach(states)
 
 
 
-#ë²”ë¡€
+#¹ü·Ê
 ?legend
 # "bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right" and "center"
-#inset ì˜µì…˜ ê°™ì´ ì§€ì • ê°€ëŠ¥
+#inset ¿É¼Ç °°ÀÌ ÁöÁ¤ °¡´É
 
 
 str(Orange)
@@ -429,23 +429,23 @@ plot(tree1$age, tree1$circumference, type="b",
 lines(tree2$age, tree2$circumference, type = "b",
       pch=15, lty=2, col="blue")
 
-#ë²”ë¡€ì¶”ê°€
+#¹ü·ÊÃß°¡
 legend("topleft", inset = 0.05, title="Tree ID",
        legend = c("Tree 1", "Tree 2"), 
        lty = c(1,2), 
        pch=c(16,15), 
        col=c("red", "blue"))
 
-#ê·¸ë˜í”„ ìš”ì†Œ ì¶”ê°€ ë³´ì¡°ëˆˆê¸ˆ
+#±×·¡ÇÁ ¿ä¼Ò Ãß°¡ º¸Á¶´«±İ
 #install.packages("Hmisc")
 library(Hmisc)
-minor.tick(nx=3, ny=3, tick.ratio = 0.5)#ëˆˆê¸ˆ ì‚¬ì´ ì§€ì •, tick.ratio=0.5 ì£¼ ëˆˆê¸ˆì˜ 50í”„ë¡œ
+minor.tick(nx=3, ny=3, tick.ratio = 0.5)#´«±İ »çÀÌ ÁöÁ¤, tick.ratio=0.5 ÁÖ ´«±İÀÇ 50ÇÁ·Î
 
 
-#í…ìŠ¤íŠ¸
+#ÅØ½ºÆ®
 ?text
 
-plot(1:5, 1:5, type="n", xaxt="n", yaxt="n",ann=FALSE) #ì¶œë ¥ ë‹¤ ì•ˆí•´í•´
+plot(1:5, 1:5, type="n", xaxt="n", yaxt="n",ann=FALSE) #Ãâ·Â ´Ù ¾ÈÇØÇØ
 text(2,2, font=1, col="red", cex=1.0,
      labels="Default text:Sans text with plain(font=1)")
 text(3,3, font=2, col="darkgreen", cex=1.2, family="mono",
