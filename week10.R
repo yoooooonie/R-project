@@ -1,10 +1,12 @@
 #Week10
 #입력
 #데이터 프레임 형태로 불러옴
+getwd()
+setwd('C:/R/files')
 read.csv(file="product.csv")
 ?read.csv
 
-read.csv(file="product_no_header.csv")
+read.csv(file="filesproduct_no_header.csv")
 read.csv(file="product_no_header.csv", header=FALSE)
 
 #각 라인은 레코드로 구성되어 있고, 구분자로 구분 되어 있다.
@@ -18,7 +20,12 @@ read.table(file = "product_missing.txt", header=TRUE)
 read.table(file = "product_missing.txt", header=TRUE,
            na.strings = ".")
 
-#고정된 길이로 구분되는 경우
+#행이름 설정
+#010을 그냥 입력받으면 numeric으로 인식. colClass로 형태를 지정해줌.
+read.table('brand-eval.csv', header = TRUE, row.names = 'BrandID', sep=',',
+           colClasses = c("character","character",'numeric','numeric','numeric'))
+
+#고정된 길이로 구분되는 경우, -1은 공백을 의미함
 read.fwf(file = "product_fix.txt", widths = c(4,-1,10,8))
 #열의 이름 주고 싶으면
 read.fwf(file = "product_fix.txt", widths = c(4,-1,10,8),
@@ -53,127 +60,8 @@ scan(file = "word.txt", what = list(date=character(),
 library(openxlsx)
 read.xlsx(xlsxFile = "product.xlsx", sheet = 1)
 
-#출력
-pi
-sqrt(3)
-print(pi)
-print(sqrt(3))
-#각 인수에 적합한 형태로 출력해준다
-print(matrix(c(1,2,3,4), ncol=2))
-print(list("Batman","Spiderman","Ironman"))
 
-#print 함수는 여러 인자를 받지 못함
-print("The Square root of 3 is", sqrt(3), ".")
-#cat은 여러 인자 받음
-cat("The Square root of 3 is", sqrt(3), ".")
-#이스케이프 시퀀스 지정 가능
-cat("The Square root of 3 is", sqrt(3), "\b.")
-#커서 다음줄로 옮기기 위한 지정 필요
-#console에서 실행해보면 차이점 알 수 있음
-cat("The Square root of 3 is", sqrt(3), "\b.","\n")
-
-name <- "Jenny"
-cat("Hello",name, "\b.\n","Isn\'t it","\t","A Lovely day")
-
-hero <- list("Batman","Spiderman","Ironman")
-#리스트는 바로 출력 불가 unlist 사용
-cat(hero)
-cat(unlist(hero))
-
-pi
-pi*100
-pi/100
-print(pi, digits = 3)
-print(pi*100, digits = 3)
-
-#cat 함수로 출력 자리수 지정하는 경우는 format 사용
-cat(format(pi, digits = 3),"\n")
-
-pnorm(-3:3)
-#유효자리수 3개로 가장 작은 숫자를 일단 맞추고 나머지를 맞춤 그래서 소수 5째 자리까지 출력
-print(pnorm(-3:3), digits = 3)
-
-z <- c(0,1.64,1.96,2.58)
-ptbl <- data.frame(Z=z, Lower=pnorm(-z), Upper=pnorm(z))
-ptbl
-print(ptbl, digits = 3) #각 열 별로 자리수가 다름 각 열의 값 중 작은 수에 맞춤
-
-#파일로 저장하기
-prime <- c(2,3,5,7,11,13,17,19)
-cat(prime, file="prime.txt", sep="\t", "\n")
-
-#기존파일에 추가하기
-id <- c("A001","A002","A003")
-name <- c("Mouse", "Keyboard","USB")
-price <- c(30000,90000,50000)
-cat(id, file = "product_cat.txt", sep="\t","\n")
-cat(name, file = "product_cat.txt", sep="\t",append = TRUE, "\n")
-cat(price, file = "product_cat.txt", sep="\t",append = TRUE, "\n")
-
-#연결객체를 먼저 생성하고 붙이기
-con <- file("product_cat2.txt", open = "w")
-cat(id, file = con, sep = "\t", "\n")
-cat(name, file = con, sep = "\t", "\n")
-cat(price, file = con, sep = "\t", "\n")
-close(con)
-
-#출력 결과 파일로 저장
-fah <- readline("Fahrenheit ?")
-32
-fah <- as.numeric(fah)
-print(paste("Fahrenheit=", fah))
-cel <- (fah-32)/1.8
-print(paste("Celsius=",cel))
-
-sink("Fahrenheit_output.txt")
-#출력 결과 파일로 저장
-fah <- readline("Fahrenheit ?")
-32
-fah <- as.numeric(fah)
-print(paste("Fahrenheit=", fah))
-cel <- (fah-32)/1.8
-print(paste("Celsius=",cel))
-sink()
-
-head(Orange)
-write.csv(x=Orange, file = "orange.csv")
-#행이름 필요 없으면
-write.csv(x=Orange, file = "orange.csv", row.names = FALSE)
-
-write.table(x=Orange, file = "orange.txt", sep=";", row.names = FALSE)
-
-rm(list=ls())
-ls()
-z <- c(0,1.64,1.96,2.58)
-ptbl <- data.frame(Z=z, Lower=pnorm(-z), Upper=pnorm(z))
-ptbl
-#중간 데이터 저장하기
-save(ptbl, file="ptbl.RData")
-rm(ptbl)
-ls()
-ptbl
-#저장된 데이터 가져오기
-load("ptbl.RData")
-ptbl
-
-#파일 검색
-list.files()
-#하위 파일까지 검색
-list.files(recursive = TRUE)
-#숨겨진 파일까지 다 보고 싶다
-list.files(all.files = TRUE)
-#패턴 넣어서 찾기
-list.files(pattern = "*.R")
-list.dirs()
-#경로 지정해서 찾기
-list.files(path = "./middle")
-
-file.create("temp.txt")
-file.exists("temp.txt")
-file.remove("temp.txt")
-
-
-#readr
+#readr #tibble 형식으로 받음
 #install.packages('pander')
 library(pander)
 openFileInOS("product.csv")
@@ -200,7 +88,7 @@ openFileInOS("product_comment.csv")
 read_csv(file = "product_comment.csv",
          comment='#')
 
-#주석을 skip 인수로 제외하고 불러올 수 있음 몇 라인 제외
+#주석을 skip 인수로 제외하고 불러올 수 있음 몇 라인까지 제외
 read_csv(file = "product_comment.csv",
          skip=1)
 
@@ -253,7 +141,7 @@ read_table(file = "product.txt",
 #라인단위로 읽어올 수 있음
 openFileInOS("word.txt")
 read_lines(file="word.txt")
-#원하는 라인만 읽음
+#원하는 라인만 읽음 1라인까지 빼고 3라인까지 읽기
 read_lines(file="word.txt", skip=1, n_max=3)
 
 #하나의 원소로 불러오기 가능
@@ -278,6 +166,162 @@ class(parse_number("$100"))
 parse_number("30%")
 parse_number("60.5Kg")
 parse_number("Salary per year : $250,000")
+
+
+
+
+
+
+
+
+
+
+
+#출력
+pi
+sqrt(3)
+print(pi)
+print(sqrt(3))
+#각 인수에 적합한 형태로 출력해준다
+print(matrix(c(1,2,3,4), ncol=2))
+print(list("Batman","Spiderman","Ironman"))
+
+#print 함수는 여러 인자를 받지 못함
+print("The Square root of 3 is", sqrt(3), ".")
+#cat은 여러 인자 받음
+cat("The Square root of 3 is", sqrt(3), ".")
+#이스케이프 시퀀스 지정 가능
+cat("The Square root of 3 is", sqrt(3), "\b.")
+#커서 다음줄로 옮기기 위한 지정 필요
+#console에서 실행해보면 차이점 알 수 있음
+cat("The Square root of 3 is", sqrt(3), "\b.","\n")
+
+name <- "Jenny"
+cat("Hello",name, "\b,\n","Isn\'t it","\t","A Lovely day")
+
+hero <- list("Batman","Spiderman","Ironman")
+#리스트는 바로 출력 불가 unlist 사용
+cat(hero)
+cat(unlist(hero))
+
+pi
+pi*100
+pi/100
+print(pi, digits = 3)
+print(pi*100, digits = 3)
+
+#cat 함수로 출력 자리수 지정하는 경우는 format 사용
+cat(format(pi, digits = 3),"\n")
+
+pnorm(-3:3)
+#유효자리수 3개로 가장 작은 숫자를 일단 맞추고 나머지를 맞춤 그래서 소수 5째 자리까지 출력
+print(pnorm(-3:3), digits = 3)
+
+z <- c(0,1.64,1.96,2.58)
+ptbl <- data.frame(Z=z, Lower=pnorm(-z), Upper=pnorm(z))
+ptbl
+print(ptbl, digits = 3) #각 열 별로 자리수가 다름 각 열의 값 중 작은 수에 맞춤
+
+#파일로 저장하기
+prime <- c(2,3,5,7,11,13,17,19)
+cat(prime, file="prime.txt", sep="\t", "\n")
+
+#기존파일에 추가하기
+id <- c("A001","A002","A003")
+name <- c("Mouse", "Keyboard","USB")
+price <- c(30000,90000,50000)
+cat(id, file = "product_cat.txt", sep="\t","\n")
+cat(name, file = "product_cat.txt", sep="\t",append = TRUE, "\n")
+cat(price, file = "product_cat.txt", sep="\t",append = TRUE, "\n")
+
+#연결객체를 먼저 생성하고 붙이기
+con <- file("product_cat2.txt", open = "w")
+cat(id, file = con, sep = "\t", "\n")
+cat(name, file = con, sep = "\t", "\n")
+cat(price, file = con, sep = "\t", "\n")
+close(con)
+
+
+#출력 결과 파일로 저장
+sink("Fahrenheit_output.txt")
+fah <- readline("Fahrenheit ?")
+32
+fah <- as.numeric(fah)
+print(paste("Fahrenheit=", fah))
+cel <- (fah-32)/1.8
+print(paste("Celsius=",cel))
+sink()
+
+#출력 결과 파일로 저장
+sink("Fahrenheit_output.txt")
+source('FahToCel.R')
+sink()
+
+sink("Fahrenheit_output.txt", append = TRUE)
+source('FahToCel.R')
+sink()
+
+
+
+
+head(Orange)
+write.csv(x=Orange, file = "orange.csv")
+#행이름 필요 없으면
+write.csv(x=Orange, file = "orange.csv", row.names = FALSE)
+
+write.table(x=Orange, file = "orange.txt", sep=";", row.names = FALSE)
+
+rm(list=ls())
+ls()
+z <- c(0,1.64,1.96,2.58)
+ptbl <- data.frame(Z=z, Lower=pnorm(-z), Upper=pnorm(z))
+ptbl
+#중간 데이터 저장하기
+save(ptbl, file="ptbl.RData")
+#dput(ptbl, file='ptbl.txt')
+#dump('ptbl', file='ptbl.txt')
+rm(ptbl)
+ls()
+ptbl
+#저장된 데이터 가져오기
+load("ptbl.RData")
+ptbl
+
+
+#기본 패키지에 포함된 Orange 이고 데이터프레임 형식
+Orange
+
+library(readr)
+write_csv(x=Orange, file = "orange.csv")
+read_csv(file="orange.csv")
+
+write_delim(x=Orange, file = "orange2.txt", delim=";")
+read_delim(file='orange2.txt', delim = ";")
+
+#저장하기
+write_lines(x=Orange$circumference, file = 'c.txt')
+read_lines("c.txt")
+
+
+
+
+#파일 검색
+list.files()
+#하위 파일까지 검색
+list.files(recursive = TRUE)
+#숨겨진 파일까지 다 보고 싶다
+list.files(all.files = TRUE)
+#패턴 넣어서 찾기
+list.files(pattern = "*.R")
+list.dirs()
+#경로 지정해서 찾기
+list.files(path = "./middle")
+
+file.create("temp.txt")
+file.exists("temp.txt")
+file.remove("temp.txt")
+
+
 
 
 #함수

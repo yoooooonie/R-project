@@ -44,8 +44,8 @@ seq(start, by="10 years", length.out=7)
 seq(from=as.Date("2025-01-30"), by="month", length.out=6)
 
 
-months()
-quarters()
+#months()
+#quarters()
 qrt <- seq(start, by="3 months", length.out=4)
 quarters(qrt)
 months(qrt)
@@ -71,7 +71,7 @@ plt
 class(plt)
 unclass(plt)
 
-plt$mday#경과된 날 수수
+plt$mday#경과된 날 수
 plt$mon
 plt$year
 
@@ -115,10 +115,11 @@ as.integer(as.Date("1969-12-31"))
 #julian date to date format
 as.Date(as.integer(jdate), origin="1970-1-1")
 
+moon <- as.POSIXct("1969/7/20, 20:17:39", format="%Y/%m/%d, %H:%M:%S",
+                   tz="UTC")
 moon
 class(moon)
 moon+ 60*60*2
-
 moon+ 60*60*24*7
 moon- 60*60*24*7
 
@@ -143,7 +144,7 @@ Sys.Date() > as.Date(moon)
 
 
 
-#날짜 lubridate
+#날짜 lubridate/루브리데이트/
 #install.packages("lubridate")
 library(lubridate)
 today()
