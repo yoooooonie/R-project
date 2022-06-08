@@ -1,3 +1,0 @@
-A001	A002	A003	
-Mouse	Keyboard	USB	
-30000	90000	50000	
