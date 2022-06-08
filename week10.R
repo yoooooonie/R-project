@@ -504,3 +504,5 @@ i <- 1
 for  (i in seq(from=5, to=25, by=5)) i 
 i
 
+rm(ls())
+
