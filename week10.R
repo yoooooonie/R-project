@@ -363,7 +363,8 @@ transLength <- function(x){
   paste(tlength, "m", sep="")
 }
 transLength("ABC")
-
+transLength(y)
+transLength
 
 #함수 만들어 보기 중괄호 없이 만들 수 있음
 f1 <- function(x,y) {x+y}
@@ -445,7 +446,7 @@ if(x>y) x else y
 
 #벡터는 조건문에 들어갈 수 없고, 들어가더라도 처음 인자만 조건에 들어감
 x <- pi
-y <- 1:5
+y <- 1:5~%X
 if(x<y) x else y #the condition has length > 1 and only the first element will be used
 if(x>y) x else y
 
@@ -496,13 +497,29 @@ while(i<=25){
   i <- i + 5
 }
 
+#몇번 던져야 연속으로 앞면이 10번 나오는가?
+flip <- function() sample(x=c('H','T'), size=1)
+nflip <- 0
+nhead <- 0
+while (nhead<10) {
+  if(flip()=='H'){
+    nhead <- nhead+1
+  } else{
+    nhead <- 0
+  }
+  nflip <- nflip+1
+}
+nflip
+
+
+
 #for (var in list) statement
 for (i in seq(from=5, to=25, by=5)) print(i) 
-for  (i in seq(from=5, to=25, by=5)) i 
+for (i in seq(from=5, to=25, by=5)) i 
 
 i <- 1
 for  (i in seq(from=5, to=25, by=5)) i 
 i
 
-rm(ls())
+rm(list=ls())
 
