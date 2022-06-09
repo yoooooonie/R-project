@@ -72,8 +72,8 @@ library(dplyr)
 
 table(flights)
 
-aggregate(flights['dest'], list(Group.dest=flights$dest), 
-          FUN=count)
+flights  %>% 
+  count(flights[,'dest'], flights$dest)
 
 
 df10 <- flights['dest','count','dist','delay']

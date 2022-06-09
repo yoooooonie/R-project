@@ -343,13 +343,14 @@ product[-index,]
 #방법4
 unique(product)
 
-#방법5
+#결측값 찾기
+#방법1
 str(airquality)
 complete.cases(airquality) #행에 결측값이 있으면 FALSE, 없으면 TRUE
 airquality.nona <- airquality[complete.cases(airquality),]
 str(airquality.nona)
 
-#방법6
+#방법2
 airquality.nona2 <- na.omit(airquality)
 str(airquality.nona2)
 

@@ -2,7 +2,7 @@ head(airquality)
 
 #install.packages("dplyr")
 library(dplyr)
-
+?dplyr
 air <- filter(airquality, Month==6)
 head(air)
 
@@ -24,6 +24,10 @@ slice(airquality, (n()-4):n())
 #여러 열을 지정가능 순서대로 arrange됨, 오름차순
 arrange(airquality, Temp, Month, Day)
 arrange(airquality, desc(Temp), Month, Day)
+?arrange
+airquality[order(airquality$Temp,airquality$Month,airquality$Day),]
+with(airquality, airquality[order(Temp,Month,Day),])
+
 
 #원하는 열을 원하는 순서대로 선택
 air <- select(airquality, Month, Day, Temp)
@@ -42,6 +46,7 @@ head(air)
 
 #중복되지 않는 값 출력
 distinct(select(airquality, Month))
+unique(airquality$Month)
 
 #새로운 열을 추가할 때 사용
 air <- mutate(airquality,
@@ -75,7 +80,7 @@ summarise(airquality,
 sample_n(airquality, 5)
 sample_frac(airquality, 0.05)
 sample_frac(airquality, 0.05, replace = TRUE) #복원추출
-
+set.seed(1)#시드 지정하면 할때 마다 같은 값 나옴
 
 #
 air.group <- group_by(airquality, Month)
