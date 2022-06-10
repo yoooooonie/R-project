@@ -216,7 +216,7 @@ plot(faithful,pch=21, col="tomato",
 )
 
 #Å©±â
-#ces
+#cex
 x <- seq(0.5,1.5,0.25)
 y <- rep(1, length(x))
 plot(x,y,pch=19, cex=x,col="green",

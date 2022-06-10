@@ -1,22 +1,22 @@
-#week14. ê·¸ëž˜í”½2
-#ì›ë„í‘œ
-#Titanic ìŠ¹ê°ìˆ˜ë¥¼ ê°€ì§€ê³  ì›ë„í‘œ ê·¸ë¦¬ê¸°
+#week14. ±×·¡ÇÈ2
+#¿øµµÇ¥
+#Titanic ½Â°´¼ö¸¦ °¡Áö°í ¿øµµÇ¥ ±×¸®±â
 slice <- c(325,285,706,885)
 lbl <- c("1st Class", "2nd Class", "3rd Class", "Crew")
 pie(slice, labels = lbl, main = "Pie Chart of Titanic Passengers")
 
 str(Titanic)
 #
-class <- margin.table(Titanic, margin=1)#ìƒˆë¡œìš´ ìš”ì•½ í…Œì´ë¸” ìƒì„±í•´ì¤Œ
+class <- margin.table(Titanic, margin=1)#»õ·Î¿î ¿ä¾à Å×ÀÌºí »ý¼ºÇØÁÜ
 class
-pie(class, main = "Pie Chart of Titanic Passengers")#labels ì§€ì •í•˜ì§€ ì•Šì•„ ë ˆì´ë¸” ì´ë¦„ ê°€ì ¸ì˜´
+pie(class, main = "Pie Chart of Titanic Passengers")#labels ÁöÁ¤ÇÏÁö ¾Ê¾Æ ·¹ÀÌºí ÀÌ¸§ °¡Á®¿È
 
 lbl <- paste(names(class), ":", class, sep="")
 lbl
 
 pie(class, labels = lbl, main = "Pie Chart of Titanic Passengers")
 
-class.pct <- round(class/sum(class)*100, 1)#percent ë³´ì—¬ì¤Œ
+class.pct <- round(class/sum(class)*100, 1)#percent º¸¿©ÁÜ
 lbl <- paste(names(class), ":", class.pct,"%", sep="")
 pie(class, labels = lbl, main = "Pie Chart of Titanic Passengers")
 
@@ -24,7 +24,7 @@ pie(class, labels = lbl, main = "Pie Chart of Titanic Passengers")
 pie(class, labels = lbl, col=rainbow(length(class.pct)),
     main = "Pie Chart of Titanic Passengers")
 
-#ë¶€ì±„ë„í‘œ ê²¹ì³ì„œ í™•ì‹¤ížˆ ì–¼ë§ˆë‚˜ ì°¨ì´ë‚˜ëŠ”ì§€ ë³´ì—¬ì¤Œ
+#ºÎÃ¤µµÇ¥ °ãÃÄ¼­ È®½ÇÈ÷ ¾ó¸¶³ª Â÷ÀÌ³ª´ÂÁö º¸¿©ÁÜ
 #install.packages("plotrix")
 library(plotrix)
 fan.plot(class, labels = names(class),
@@ -35,55 +35,55 @@ fan.plot(class, labels = names(class),
 
 
 
-#ë§‰ëŒ€ë„í‘œ
+#¸·´ëµµÇ¥
 str(Titanic)
-class <- margin.table(Titanic, margin = 1) #ì²«ë²ˆì§¸ ì°¨ì› ì„ íƒ
+class <- margin.table(Titanic, margin = 1) #Ã¹¹øÂ° Â÷¿ø ¼±ÅÃ
 class
 barplot(class, main="Simple Bar chart")
 barplot(class, 
         xlab="Class",
         ylab="Number of Passengers",
-        main="Simple Bar chart") #ê¸°ë³¸ìœ¼ë¡œ ìˆ˜ì§
+        main="Simple Bar chart") #±âº»À¸·Î ¼öÁ÷
 
-#ìˆ˜í‰í˜•íƒœ
+#¼öÆòÇüÅÂ
 barplot(class, horiz = TRUE,
         xlab="Class",
         ylab="Number of Passengers",
         main="Horizeontal Bar chart") 
 
-#ìˆ˜ì§ëˆ„ì ë§‰ëŒ€ë„í‘œ
+#¼öÁ÷´©Àû¸·´ëµµÇ¥
 survival.by.class <- margin.table(Titanic, margin=c(4,1))
 survival.by.class
 barplot(survival.by.class, 
         main="Stacked Bar Chart")
 
-#ìˆ˜í‰ëˆ„ì ë§‰ëŒ€ë„í‘œ(ì˜†ìœ¼ë¡œ ë°°ì—´ë¨)
+#¼öÆò´©Àû¸·´ëµµÇ¥(¿·À¸·Î ¹è¿­µÊ)
 barplot(survival.by.class, beside = TRUE,
         main="Grouped Bar Chart")
 barplot(survival.by.class, beside = TRUE,
         names.arg = c("1st Class", "2nd Class", "3rd Class", "Crew"),
-        cex.names = 0.75,#í¬ê¸°
-        col = c("red", "green"),#ìƒ‰ê¹”
-        legend=TRUE,#ë²”ë¡€
+        cex.names = 0.75,#Å©±â
+        col = c("red", "green"),#»ö±ò
+        legend=TRUE,#¹ü·Ê
         ylab = "Survivors", las=1, ylim=c(0,1000),
         main="Grouped Bar Chart")
 
-#ë²”ë¡€ìœ„ì¹˜ ë°”ê¾¸ê¸°
+#¹ü·ÊÀ§Ä¡ ¹Ù²Ù±â
 barplot(survival.by.class, beside = TRUE,
         names.arg = c("1st Class", "2nd Class", "3rd Class", "Crew"),
-        cex.names = 0.75,#í¬ê¸°
-        col = c("red", "green"),#ìƒ‰ê¹”
+        cex.names = 0.75,#Å©±â
+        col = c("red", "green"),#»ö±ò
         ylab = "Survivors", las=1, ylim=c(0,1000),
         main="Grouped Bar Chart")
 legend(x=1,y=900, legend = c("Dead", "Alive"),
-       #pch= ,ëª¨ì–‘ì¸ê²½ìš°
-       #lty = ,ì„  ì¸ ê²½ìš°
+       #pch= ,¸ð¾çÀÎ°æ¿ì
+       #lty = ,¼± ÀÎ °æ¿ì
        fill = c("red", "green"), title = "Status")
 
 
-#ë§‰ëŒ€ì˜ ë†’ì´ë¥¼ ë™ì¼í•˜ê²Œ ë§Œë“¤ê³  ì²™ë„ ë¹„êµí•˜ê¸°
+#¸·´ëÀÇ ³ôÀÌ¸¦ µ¿ÀÏÇÏ°Ô ¸¸µé°í Ã´µµ ºñ±³ÇÏ±â
 survival.by.class
-survival.prop <- prop.table(survival.by.class, margin=2) #margin=2:ì—´ì˜ ë¹„ìœ¨ì„ ê³„ì‚°í•´ì„œ 
+survival.prop <- prop.table(survival.by.class, margin=2) #margin=2:¿­ÀÇ ºñÀ²À» °è»êÇØ¼­ 
 survival.prop
 barplot(survival.prop, col=c("maroon", "skyblue"),
         xlab="Class", ylab="Ratio of Survivors", las=1,
@@ -92,84 +92,84 @@ barplot(survival.prop, col=c("maroon", "skyblue"),
 #install.packages("vcd")
 library(vcd)
 spine(t(survival.by.class), gp=gpar(fill=c("mistyrose", "lightblue")),
-      main="Spine Plot of Survivors by Class") #t()ë¡œ í–‰ê³¼ì—´ì„ ë°”ê¾¸ê³  ì¸ìžë¡œ ë„˜ê¸´ë‹¤
+      main="Spine Plot of Survivors by Class") #t()·Î Çà°ú¿­À» ¹Ù²Ù°í ÀÎÀÚ·Î ³Ñ±ä´Ù
 
-#ì‚¬ë£Œì— ì¢…ë£Œì— ë”°ë¼ ë§‰ëŒ€ê·¸ëž˜í”„ë¡œ ë³´ì—¬ì£¼ê¸°
+#»ç·á¿¡ Á¾·á¿¡ µû¶ó ¸·´ë±×·¡ÇÁ·Î º¸¿©ÁÖ±â
 str(chickwts)
 heights <- tapply(chickwts$weight, chickwts$feed, mean)
 heights
 barplot(heights, xlab="Feed Type", ylab="Mean Chichen Weights(g)",
         ylim=c(0,400), las=1, main="Chicken Weights by Feed Type")
 
-#ë§‰ëŒ€ë„í‘œ ê¾¸ë¯¸ëŠ” ì˜µì…˜ë“¤ ì‚´íŽ´ë³´ê¸°
+#¸·´ëµµÇ¥ ²Ù¹Ì´Â ¿É¼Çµé »ìÆìº¸±â
 str(UCBAdmissions)
 admission.by.dept <- margin.table(UCBAdmissions, c(1,3))
 admission.by.dept
 
-barplot(admission.by.dept, density = 15, angle = 135)#density = ì¸ì¹˜ë‹¹ ì‚¬ì„ ì˜ ê°œìˆ˜ , angle = ì‚¬ì„ ì˜ ê°ë„
-barplot(admission.by.dept, density = 55, angle = 45)#density = ì¸ì¹˜ë‹¹ ì‚¬ì„ ì˜ ê°œìˆ˜ , angle = ì‚¬ì„ ì˜ ê°ë„
-barplot(admission.by.dept, border = "red", col=c("lightblue", "mistyrose"))#border =í…Œë‘ë¦¬
+barplot(admission.by.dept, density = 15, angle = 135)#density = ÀÎÄ¡´ç »ç¼±ÀÇ °³¼ö , angle = »ç¼±ÀÇ °¢µµ
+barplot(admission.by.dept, density = 55, angle = 45)#density = ÀÎÄ¡´ç »ç¼±ÀÇ °³¼ö , angle = »ç¼±ÀÇ °¢µµ
+barplot(admission.by.dept, border = "red", col=c("lightblue", "mistyrose"))#border =Å×µÎ¸®
 
-#ìˆ˜í‰ìœ¼ë¡œ ë§Œë“¤ê¸°
-barplot(admission.by.dept, beside=TRUE, space = c(0.3,2.0)) #ë§‰ëŒ€ê°„ ê°„ê²©, ì§‘ë‹¨ê°„ ê°„ê²©, ê¸°ë³¸0 or 1
-barplot(admission.by.dept, beside=TRUE, space = c(0.1,3.0)) #ë§‰ëŒ€ê°„ ê°„ê²©, ì§‘ë‹¨ê°„ ê°„ê²©, ê¸°ë³¸0 or 1
-barplot(admission.by.dept, axes = FALSE) #ìˆ˜ì§ ì¢Œí‘œì¶•ì´ ì¶œë ¥ë˜ì§€ ì•ŠìŒìŒ
+#¼öÆòÀ¸·Î ¸¸µé±â
+barplot(admission.by.dept, beside=TRUE, space = c(0.3,2.0)) #¸·´ë°£ °£°Ý, Áý´Ü°£ °£°Ý, ±âº»0 or 1
+barplot(admission.by.dept, beside=TRUE, space = c(0.1,3.0)) #¸·´ë°£ °£°Ý, Áý´Ü°£ °£°Ý, ±âº»0 or 1
+barplot(admission.by.dept, axes = FALSE) #¼öÁ÷ ÁÂÇ¥ÃàÀÌ Ãâ·ÂµÇÁö ¾ÊÀ½À½
 barplot(admission.by.dept, horiz=TRUE, axes = FALSE)
 
 
 
 
-#ížˆìŠ¤í† ê·¸ëž¨
+#È÷½ºÅä±×·¥
 str(iris)
-#ê½ƒë°›ì¹¨ í­ì— ë”°ë¥¸ ížˆìŠ¤í† ê·¸ëž¨
+#²É¹ÞÄ§ Æø¿¡ µû¸¥ È÷½ºÅä±×·¥
 hist(iris$Sepal.Width)
-hist(iris$Sepal.Width, main = "Sepal.Width", las=1, breaks=20)#breaks êµ¬ê°„ì˜ ê°œìˆ˜ ì„¤ì •. 100% ë§žì§„ ì•Šì§€ë§Œ ë§žì¶”ë ¤ê³  í•¨
+hist(iris$Sepal.Width, main = "Sepal.Width", las=1, breaks=20)#breaks ±¸°£ÀÇ °³¼ö ¼³Á¤. 100% ¸ÂÁø ¾ÊÁö¸¸ ¸ÂÃß·Á°í ÇÔ
 ?hist
 hist(iris$Sepal.Width, breaks=seq(2.0,4.4,0.2))
-hist(iris$Sepal.Width, breaks=seq(2.0,4.4,0.2), labels = TRUE)#labels ê°’ ë³´ì´ê¸°
+hist(iris$Sepal.Width, breaks=seq(2.0,4.4,0.2), labels = TRUE)#labels °ª º¸ÀÌ±â
 hist(iris$Sepal.Width, breaks=seq(2.0,4.4,0.2), labels = TRUE,
-     density = 50, angle = 100,#density = ì¸ì¹˜ë‹¹ ì‚¬ì„ ì˜ ê°œìˆ˜ , angle = ì‚¬ì„ ì˜ ê°ë„
+     density = 50, angle = 100,#density = ÀÎÄ¡´ç »ç¼±ÀÇ °³¼ö , angle = »ç¼±ÀÇ °¢µµ
      xlim = c(2,4.5), ylim = c(0,40),
      xlab = "Sepal Width(Cm)"
-     )
-hist(iris$Sepal.Width, breaks=seq(2.0,4.4,0.2), labels = TRUE, prob=TRUE, #prob:í™•ë¥ ë°€ë„í•¨ìˆ˜ë¡œ ë³¼ ìˆ˜ ìžˆìŒ
+)
+hist(iris$Sepal.Width, breaks=seq(2.0,4.4,0.2), labels = TRUE, prob=TRUE, #prob:È®·ü¹ÐµµÇÔ¼ö·Î º¼ ¼ö ÀÖÀ½
      col="gold", border="red",
      xlim = c(2,4.5), ylim = c(0,1.5),
      xlab = "Sepal Width(Cm)"
 )
 
-density(iris$Sepal.Width) #ë°€ë„ ê³¡ì„ 
-lines(density(iris$Sepal.Width), col="black", lwd=2)#ë°€ë„ ê³¡ì„ 
-quantile(iris$Sepal.Width) #100ë¶„ìœ„ìˆ˜ ì¶”ì¶œ
+density(iris$Sepal.Width) #¹Ðµµ °î¼±
+lines(density(iris$Sepal.Width), col="black", lwd=2)#¹Ðµµ °î¼±
+quantile(iris$Sepal.Width) #100ºÐÀ§¼ö ÃßÃâ
 rug(quantile(iris$Sepal.Width), col="purple", lwd=4)
 
 
-#ì •ê·œë¶„í¬ê³¡ì„  ì¶”ê°€í•´ì„œ ê·¸ë¦¬ê¸°
-hist(iris$Sepal.Width, breaks=seq(2.0,4.4,0.2), labels = TRUE, prob=TRUE, #prob:í™•ë¥ ë°€ë„í•¨ìˆ˜ë¡œ ë³¼ ìˆ˜ ìžˆìŒ
+#Á¤±ÔºÐÆ÷°î¼± Ãß°¡ÇØ¼­ ±×¸®±â
+hist(iris$Sepal.Width, breaks=seq(2.0,4.4,0.2), labels = TRUE, prob=TRUE, #prob:È®·ü¹ÐµµÇÔ¼ö·Î º¼ ¼ö ÀÖÀ½
      col="gold", border="red",
      xlim = c(2,4.5), ylim = c(0,1.5),
      xlab = "Sepal Width(Cm)"
 )
-x <- seq(min(iris$Sepal.Width), max(iris$Sepal.Width), length=40) #40ê°œ ì‚¬ìš©í•œë‹¤
+x <- seq(min(iris$Sepal.Width), max(iris$Sepal.Width), length=40) #40°³ »ç¿ëÇÑ´Ù
 y <- dnorm(x, mean =mean(iris$Sepal.Width) , sd=sd(iris$Sepal.Width))
 lines(x,y, col="chocolate", lwd=3)
-box()#ê²‰ì— ë°•ìŠ¤ í…Œë‘ë¦¬ 
+box()#°Ñ¿¡ ¹Ú½º Å×µÎ¸® 
 
 
 
 
 
-#ë°€ë„ë„í‘œ
+#¹ÐµµµµÇ¥
 str(iris)
 ds <- density(iris$Sepal.Width)
 plot(ds, main="Density of Sepal Width")
-polygon(ds, col="pink", border = "red") #ìƒ‰ê¹” ì±„ìš°ê¸°
-rug(iris$Sepal.Width, col="purple")#ëŸ¬ê·¸ë„í‘œ ì¶”ê°€ë¨
+polygon(ds, col="pink", border = "red") #»ö±ò Ã¤¿ì±â
+rug(iris$Sepal.Width, col="purple")#·¯±×µµÇ¥ Ãß°¡µÊ
 
 #install.packages("sm")
 library(sm)
 attach(iris)
-sm.density.compare(x=Sepal.Width, group = Species, #3ê°œì˜ ê½ƒ ì¢…ë¥˜ë³„ ê·¸ëž˜í”„
+sm.density.compare(x=Sepal.Width, group = Species, #3°³ÀÇ ²É Á¾·ùº° ±×·¡ÇÁ
                    xlab="Sepal Width(Cm)")
 title(main="Distribution of Sepal Width by Iris Species")
 legend("topright", legend = levels(Species), 
@@ -178,46 +178,46 @@ legend("topright", legend = levels(Species),
 
 
 
-#ìƒìžë„í‘œ
+#»óÀÚµµÇ¥
 str(iris)
 boxplot(iris$Sepal.Width,
         ylab="Sepal Width", main="Sepal Width of Iris", las=1)
-#whisker:ìˆ˜ì—¼, box and whisker plot ë°•ìŠ¤ ìˆ˜ì—¼ ë„í‘œ
-#ì´ìƒì ì€ ë™ê·¸ë¼ë¯¸ë„ í‘œí˜„ë¨
+#whisker:¼ö¿°, box and whisker plot ¹Ú½º ¼ö¿° µµÇ¥
+#ÀÌ»óÁ¡Àº µ¿±×¶ó¹Ìµµ Ç¥ÇöµÊ
 
-boxplot.stats(iris$Sepal.Width)#ì•„ëž˜ìˆ˜ì—¼ë, Q1, Q2, Q3, ìœ„ìˆ˜ì—¼ë, conf : 95í”„ë¡œ ì‹ ë¢°êµ¬ê°„, out:ì´ìƒì 
+boxplot.stats(iris$Sepal.Width)#¾Æ·¡¼ö¿°³¡, Q1, Q2, Q3, À§¼ö¿°³¡, conf : 95ÇÁ·Î ½Å·Ú±¸°£, out:ÀÌ»óÁ¡
 
 boxplot(Sepal.Width~Species, data=iris,
         ylab="Sepal width", main="Sepal width of Iris Species")
 
 ?boxplot
 boxplot(Sepal.Width~Species, data=iris,
-        notch=TRUE,border="red", las=1, #notch 95í”„ë¡œ ì‹ ë¢°êµ¬ê°„ì´ ví™ˆìœ¼ë¡œ íŒŒì´ëŠ”ê²Œ ë³´ì¸ë‹¤
+        notch=TRUE,border="red", las=1, #notch 95ÇÁ·Î ½Å·Ú±¸°£ÀÌ vÈ¨À¸·Î ÆÄÀÌ´Â°Ô º¸ÀÎ´Ù
         col=c("pink", "purple","lightblue"),
         ylab="Sepal width", main="Sepal width of Iris Species")
 
 boxplot(Sepal.Width~Species, data=iris,
-        notch=TRUE,border="red", las=1, #notch 95í”„ë¡œ ì‹ ë¢°êµ¬ê°„ì´ ví™ˆìœ¼ë¡œ íŒŒì´ëŠ”ê²Œ ë³´ì¸ë‹¤
+        notch=TRUE,border="red", las=1, #notch 95ÇÁ·Î ½Å·Ú±¸°£ÀÌ vÈ¨À¸·Î ÆÄÀÌ´Â°Ô º¸ÀÎ´Ù
         col=c("pink", "purple","lightblue"),
-        names=c("Setosa", "Versicolor", "Virginica"), #ì´ë¦„ ì„¤ì • ê°€ëŠ¥ 
+        names=c("Setosa", "Versicolor", "Virginica"), #ÀÌ¸§ ¼³Á¤ °¡´É 
         ylab="Sepal width", xlab="", main="Sepal width of Iris Species")
 
 
-#ê°€ë¡œë¡œ ê·¸ë¦¬ê¸°
-boxplot(Sepal.Width~Species, data=iris, horizontal = TRUE, #ê°€ë¡œë¡œ ê·¸ë¦¬ê¸°, xlab,ylab ì„ ë°”ê¿”ì¤˜ì•¼ í•¨
-        notch=TRUE,border="red", las=1, #notch : 95í”„ë¡œ ì‹ ë¢°êµ¬ê°„ì´ ví™ˆìœ¼ë¡œ íŒŒì´ëŠ”ê²Œ ë³´ì¸ë‹¤
+#°¡·Î·Î ±×¸®±â
+boxplot(Sepal.Width~Species, data=iris, horizontal = TRUE, #°¡·Î·Î ±×¸®±â, xlab,ylab À» ¹Ù²ãÁà¾ß ÇÔ
+        notch=TRUE,border="red", las=1, #notch : 95ÇÁ·Î ½Å·Ú±¸°£ÀÌ vÈ¨À¸·Î ÆÄÀÌ´Â°Ô º¸ÀÎ´Ù
         col=c("pink", "purple","lightblue"),
-        names=c("Setosa", "Versicolor", "Virginica"), #ì´ë¦„ ì„¤ì • ê°€ëŠ¥ 
+        names=c("Setosa", "Versicolor", "Virginica"), #ÀÌ¸§ ¼³Á¤ °¡´É 
         xlab="Sepal width", ylab="", main="Sepal width of Iris Species")
 
 
-#ì§‘ë‹¨ì„ êµ¬ë¶„í•˜ëŠ” ë³€ìˆ˜ê°€ ì—¬ëŸ¬ê°œì¸ ê²½ìš°
+#Áý´ÜÀ» ±¸ºÐÇÏ´Â º¯¼ö°¡ ¿©·¯°³ÀÎ °æ¿ì
 str(mtcars)
-#cyl, am factorë¡œ ë³€í™˜
+#cyl, am factor·Î º¯È¯
 mtcars$cyl.factor <- factor(mtcars$cyl, 
                             levels = c(4,6,8), labels = c("4", "6","8"))
 mtcars$am.factor <- factor(mtcars$am, 
-                            levels = c(0,1), labels = c("Auto","Manual"))
+                           levels = c(0,1), labels = c("Auto","Manual"))
 boxplot(mpg~am.factor*cyl.factor, data=mtcars)
 boxplot(mpg~am.factor*cyl.factor, data=mtcars,
         col=c("salmon","violet"), las=1, 
@@ -226,15 +226,15 @@ boxplot(mpg~am.factor*cyl.factor, data=mtcars,
 
 boxplot(mpg~am.factor*cyl.factor, data=mtcars,
         col=c("salmon","violet"), las=1, 
-        varwidth=TRUE, #í‘œë³¸ì˜ í¬ê¸°ë¥¼ ë¹„êµí•´ì„œ ë³¼ ìˆ˜ ìžˆë‹¤.
-        at=c(1,2, 3.5,4.5, 6,7), #ì‚¬ì´ì˜ ê°„ê²© ìœ„ì¹˜ë¡œ ì§€ì •
+        varwidth=TRUE, #Ç¥º»ÀÇ Å©±â¸¦ ºñ±³ÇØ¼­ º¼ ¼ö ÀÖ´Ù.
+        at=c(1,2, 3.5,4.5, 6,7), #»çÀÌÀÇ °£°Ý À§Ä¡·Î ÁöÁ¤
         xlab="Car Type", ylab="Milers per Gallon",
         main="Car Mileage by Type")
-windows(width = 12, height = 8) #ìƒˆë¡œìš´ ì°½ ìƒì„±
+windows(width = 12, height = 8) #»õ·Î¿î Ã¢ »ý¼º
 
 
 
-#ë°”ì´ì˜¬ë¦°ë„í‘œ : ìƒìžë„í‘œ+ë°€ë„ë„í‘œ
+#¹ÙÀÌ¿Ã¸°µµÇ¥ : »óÀÚµµÇ¥+¹ÐµµµµÇ¥
 #install.packages("vioplot")
 library(vioplot)
 str(mtcars)
@@ -245,7 +245,7 @@ vioplot(mpg~cyl, data=mtcars,
         names = c("4 cyl", "6 cyl","8 cyl"),
         xlab = "Number of Cylinders", ylab = "Miles per Gallon", main="Car Mileage by Cylinder")
 
-#ë°ì´í„°ê°€ ê°ê° ìžˆëŠ” ê²½ìš° í•©ì³ì„œ ê·¸ëž˜í”„ ê·¸ë¦¬ê¸°
+#µ¥ÀÌÅÍ°¡ °¢°¢ ÀÖ´Â °æ¿ì ÇÕÃÄ¼­ ±×·¡ÇÁ ±×¸®±â
 c4 <- mtcars$mpg[mtcars$cyl==4]
 c6 <- mtcars$mpg[mtcars$cyl==6]
 c8 <- mtcars$mpg[mtcars$cyl==8]
@@ -255,20 +255,20 @@ vioplot(c4, c6, c8,
         names = c("4 cyl", "6 cyl","8 cyl"),
         xlab = "Number of Cylinders", ylab = "Miles per Gallon", main="Car Mileage by Cylinder")
 
-#ì‚°ì ë„
-#ìžë™ì°¨ ë¬´ê²Œì™€ ì—°ë¹„
+#»êÁ¡µµ
+#ÀÚµ¿Â÷ ¹«°Ô¿Í ¿¬ºñ
 x <- mtcars$wt
 y <- mtcars$mpg
-plot(x,y, pch=20, col="pink", ann=FALSE) #ann=FALSE ì¶•ì œëª© ì•ˆë‚˜íƒ€ë‚˜ê²Œ
+plot(x,y, pch=20, col="pink", ann=FALSE) #ann=FALSE ÃàÁ¦¸ñ ¾È³ªÅ¸³ª°Ô
 max(x); max(y)
 plot(x,y, pch=20, col="pink", ann=FALSE,
      xlim=c(0,6), ylim=c(0,36))
-vioplot(y, col="lightblue", rectCol = "gray", lty = 2, add = TRUE) #add = TRUE ê¸°ì¡´ ìœ„ì— ì¶”ê°€
-vioplot(x, col="tomato", rectCol = "brown", lty = 1, add = TRUE, horizontal = TRUE,#horizontal = TRUE ìˆ˜í‰ìœ¼ë¡œ
-        wex=6) #wex=6í¬ê¸° í‚¤ìš°ê¸°. ê¸°ë³¸ì€ 1
+vioplot(y, col="lightblue", rectCol = "gray", lty = 2, add = TRUE) #add = TRUE ±âÁ¸ À§¿¡ Ãß°¡
+vioplot(x, col="tomato", rectCol = "brown", lty = 1, add = TRUE, horizontal = TRUE,#horizontal = TRUE ¼öÆòÀ¸·Î
+        wex=6) #wex=6Å©±â Å°¿ì±â. ±âº»Àº 1
 vioplot(x, col="tomato", rectCol = "brown", lty = 1, add = TRUE, horizontal = TRUE,
-        wex=6, #wex=6í¬ê¸° í‚¤ìš°ê¸°. ê¸°ë³¸ì€ 1
-        at=4)#ìœ„ì¹˜ì¹˜
+        wex=6, #wex=6Å©±â Å°¿ì±â. ±âº»Àº 1
+        at=4)#À§Ä¡Ä¡
 title("Car Mieage vs. Car weight",
       xlab="Weight(1,000lbs)", ylab="Miles per Gallon")
 
@@ -276,8 +276,8 @@ title("Car Mieage vs. Car weight",
 
 
 
-#ì ë„í‘œ
-#ëª¨ë¸ë³„ ì—°ë¹„
+#Á¡µµÇ¥
+#¸ðµ¨º° ¿¬ºñ
 str(mtcars)
 head(mtcars)
 dotchart(mtcars$mpg)
@@ -290,12 +290,12 @@ cars
 cars$cyl.f <- factor(cars$cyl, levels=c(4,6,8), labels = c("4cyl","6cyl","8cyl"))
 cars
 
-#ê·¸ë£¹ìœ¼ë¡œ ë¬¶ì–´ì„œ í‘œì— ë‚˜íƒ€ëƒ„
+#±×·ìÀ¸·Î ¹­¾î¼­ Ç¥¿¡ ³ªÅ¸³¿
 dotchart(mtcars$mpg, labels = row.names(mtcars), cex = 0.7,
          xlab="Miles per Gallon", main="Mileage for Car Model",
-         groups = cars$cyl.f, gcolor = "red")#ì‹¤ë¦°ë”ë¥¼ ë²”ì£¼ë¡œ ì¶”ê°€
+         groups = cars$cyl.f, gcolor = "red")#½Ç¸°´õ¸¦ ¹üÁÖ·Î Ãß°¡
 
-#cyl ë³„ ìƒ‰ìƒì§€ì •
+#cyl º° »ö»óÁöÁ¤
 cars$colors[cars$cyl.f=="4cyl"] <- "maroon"
 cars$colors[cars$cyl.f=="6cyl"] <- "deepskyblue"
 cars$colors[cars$cyl.f=="8cyl"] <- "darkgreen"
@@ -303,20 +303,20 @@ head(cars)
 
 dotchart(mtcars$mpg, labels = row.names(mtcars), cex = 0.7,
          xlab="Miles per Gallon", main="Mileage for Car Model",
-         groups = cars$cyl.f, gcolor = "red",#ì‹¤ë¦°ë”ë¥¼ ë²”ì£¼ë¡œ ì¶”ê°€
+         groups = cars$cyl.f, gcolor = "red",#½Ç¸°´õ¸¦ ¹üÁÖ·Î Ãß°¡
          color = cars$colors,pch=19
-         )
+)
 
-VADeaths #ë²„ì§€ë‹ˆì•„ì˜ ì‚¬ë§ë¥ ë¥ 
+VADeaths #¹öÁö´Ï¾ÆÀÇ »ç¸Á·ü·ü
 dotchart(VADeaths)
-dotchart(t(VADeaths), cex=0.8) #x,y ë°”ê¿ˆ
+dotchart(t(VADeaths), cex=0.8) #x,y ¹Ù²Þ
 
 
 
 
 
 
-#ì„ ë„í‘œ
+#¼±µµÇ¥
 Orange
 tree1 <- subset(Orange, Tree==1)
 tree1
@@ -324,21 +324,21 @@ plot(tree1$age, tree1$circumference, xlab="Age(days)", ylab="Circumference(mm)",
      main="Growth of Orange Tree 1")
 plot(tree1$age, tree1$circumference, xlab="Age(days)", ylab="Circumference(mm)", 
      main="Growth of Orange Tree 1",
-     type="l")#ì„ ë„í‘œ
+     type="l")#¼±µµÇ¥
 plot(tree1$age, tree1$circumference, xlab="Age(days)", ylab="Circumference(mm)", 
      main="Growth of Orange Tree 1",
-     type="b")#ì„ ë„í‘œ + ì 
+     type="b")#¼±µµÇ¥ + Á¡
 plot(tree1$age, tree1$circumference, xlab="Age(days)", ylab="Circumference(mm)", 
      main="Growth of Orange Tree 1",
-     type="o")#ì„ ë„í‘œ + ì  ê²¹ì¹˜ê²Œê²Œ
+     type="o")#¼±µµÇ¥ + Á¡ °ãÄ¡°Ô°Ô
 
 
-#ì§‘ë‹¨ë³„ ì„ ë„í‘œ
+#Áý´Üº° ¼±µµÇ¥
 Orange
 xlim=range(Orange$age)
 ylim=range(Orange$circumference)
 
-plot(xlim, ylim, type="n",las=1, bty="l",#ê·¸ëž˜í”„ í‹€ë§Œ ê·¸ë¦¬ê¸° #bty="l"ê·¸ëž˜í”„ í‹€ ìƒì„±
+plot(xlim, ylim, type="n",las=1, bty="l",#±×·¡ÇÁ Æ²¸¸ ±×¸®±â #bty="l"±×·¡ÇÁ Æ² »ý¼º
      xlab="Age(days)", ylab="Circumference(mm)", 
      main="Growth of Orange Tree")
 
@@ -364,32 +364,32 @@ legend(xlim[1], ylim[2], 1:ntree,
 
 
 
-#ì‚°ì ë„
+#»êÁ¡µµ
 str(iris)
 plot(iris$Petal.Length, iris$Petal.Width)
 with(iris, plot(Petal.Length, Petal.Width))
 
-plot(Petal.Width ~ Petal.Length, iris) #formula ë°©ì‹ y~x
+plot(Petal.Width ~ Petal.Length, iris) #formula ¹æ½Ä y~x
 
 as.integer(iris$Species)
 with(iris, plot(Petal.Length, Petal.Width,
                 pch=as.integer(Species)+18))
-legend(x=1.2, y=2.4, legend = c("Setosa","Versicolor","Virginica"), #x,y,ì¢Œí‘œë¡œ ìœ„ì¹˜ ì§€ì •
+legend(x=1.2, y=2.4, legend = c("Setosa","Versicolor","Virginica"), #x,y,ÁÂÇ¥·Î À§Ä¡ ÁöÁ¤
        pch=c(1:3)+18)
 
 
 with(iris, plot(Petal.Length, Petal.Width,
                 pch=as.integer(Species)+18))
-legend(x=1.2, y=2.4, legend = as.character(levels(iris$Species)), #x,y,ì¢Œí‘œë¡œ ìœ„ì¹˜ ì§€ì •
+legend(x=1.2, y=2.4, legend = as.character(levels(iris$Species)), #x,y,ÁÂÇ¥·Î À§Ä¡ ÁöÁ¤
        pch=c(1:length(levels(iris$Species)))+18)
 
-#locator ì˜µì…˜ ì‚¬ìš©
+#locator ¿É¼Ç »ç¿ë
 with(iris, plot(Petal.Length, Petal.Width,
                 pch=as.integer(Species)+18))
-legend(locator(1), legend = as.character(levels(iris$Species)), #locator í•¨ìˆ˜ í˜¸ì¶œí•˜ë©´ ë§ˆìš°ìŠ¤ë¡œ x,y,ì¢Œí‘œë¡œ ìœ„ì¹˜ ì§€ì •ê°€ë¯•
+legend(locator(1), legend = as.character(levels(iris$Species)), #locator ÇÔ¼ö È£ÃâÇÏ¸é ¸¶¿ì½º·Î x,y,ÁÂÇ¥·Î À§Ä¡ ÁöÁ¤°¡’×
        pch=c(1:length(levels(iris$Species)))+18)
 
-#ìƒ‰ê¹”
+#»ö±ò
 with(iris, plot(Petal.Length, Petal.Width,
                 pch=as.integer(Species),
                 col=as.integer(Species)))
@@ -407,7 +407,7 @@ legend(x=1.2, y=2.4, legend = as.character(levels(iris$Species)),
 
 
 
-#ì‚°ì ë„
+#»êÁ¡µµ
 install.packages("car")
 library(car)
 scatterplot(mpg~wt | cyl , data=mtcars, boxplots="xy", lwd=2, pch=c(15,16,17),
@@ -419,7 +419,7 @@ scatterplot(mpg~wt | cyl , data=mtcars, boxplots="xy", lwd=2, pch=c(15,16,17),
 
 
 
-#ì‚°ì ë„ í–‰ë ¬
+#»êÁ¡µµ Çà·Ä
 str(iris)
 plot(iris[1:2])
 plot(iris[1:4])
@@ -435,14 +435,14 @@ pairs.panels(iris[1:4])
 
 ?points
 pairs.panels(iris[1:4], pch=21, bg=c("red","green","blue")[iris$Species],
-             lm=TRUE) #íšŒê·€ì„  ê·¸ë¦¼
+             lm=TRUE) #È¸±Í¼± ±×¸²
 
 pairs.panels(iris[1:4], pch=as.numeric(iris$Species)+20, bg=c("red","green","blue")[iris$Species],
              lm=TRUE,
-             hist.col = "gold") #histogramìƒ‰ ë³€ê²½
+             hist.col = "gold") #histogram»ö º¯°æ
 
 
-#ìƒê´€ê³„ìˆ˜ì˜ í†µê³„ì  ìœ ì˜ì„± í™•ì¸ì„ ìœ„í•´
+#»ó°ü°è¼öÀÇ Åë°èÀû À¯ÀÇ¼º È®ÀÎÀ» À§ÇØ
 install.packages("PerformanceAnalytics")
 library(PerformanceAnalytics)
 chart.Correlation(iris[1:4], pch=21, 
