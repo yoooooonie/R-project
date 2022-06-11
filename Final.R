@@ -255,7 +255,7 @@ seconds(seq(0,10,by=2))
 
 10*(months(6)+days(2))
 days(60)+hours(12)+minutes(15)
-
+library(lubridate)
 moon<- ymd("1969/07/20")
 moon
 moon+days(10000)
@@ -293,7 +293,7 @@ ymd("2029-01-01")+dyears(1)
 ymd("2028-01-01")+years(1)
 ymd("2028-01-01")+dyears(1) 
 
-leap_year(2028)
+leap_year(2028) #À±³â¿©ºÎ
 leap_year(2029)
 
 years(1)/days(1)

@@ -70,4 +70,5 @@ rowSums(mtx10)
 
 #(c)
 mtx10.2 <- mtx10 %*% mtx10
+#(d)
 mtx10.2[,"upper"]

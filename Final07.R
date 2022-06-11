@@ -33,6 +33,8 @@ head(eyes)
 tail(eyes)
 subset(eyes, subset = (Colour=='Brown'))
 mean(subset(eyes, subset = (Colour=='Brown'))$Flicker)
+mean(eyes[eyes$Colour=='Brown',]$Flicker)
+
 
 #7-5
 url5 <- "https://www.itl.nist.gov/div898/strd/univ/data/PiDigits.dat"
@@ -69,4 +71,9 @@ colMeans(subset(airqualSeoul, subset = (측정소명=='성북구'))['PM2.5'], na.rm=TRU
 colMeans(subset(airqualSeoul, subset = (측정소명=='종로구'))['PM2.5'], na.rm=TRUE)
 
 #7-8
+install.packages('httr')
+library(httr)
 url8 <- 'https://www.ssa.gov/oact/babynames'
+html.obj <- GET(url)
+html <- content(html.obj, type = 'text')
+html <- readLines(url)

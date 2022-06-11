@@ -94,7 +94,7 @@ library(vcd)
 spine(t(survival.by.class), gp=gpar(fill=c("mistyrose", "lightblue")),
       main="Spine Plot of Survivors by Class") #t()로 행과열을 바꾸고 인자로 넘긴다
 
-#사료에 종료에 따라 막대그래프로 보여주기
+#사료에 종류에 따라 막대그래프로 보여주기
 str(chickwts)
 heights <- tapply(chickwts$weight, chickwts$feed, mean)
 heights

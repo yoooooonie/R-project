@@ -34,7 +34,7 @@ mtcars[1:15]
 mtcars[1:15,]
 
 
-#9-6
+#9-6 70%sample »ùÇÃ ÃßÃâ
 head(iris)
 sample.index <- sample(1:nrow(iris), size=nrow(iris)*0.7)
 iris[sample.index,]

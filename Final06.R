@@ -95,7 +95,7 @@ format(date6,'%B %d, %Y')
 Sys.setlocale()#원래 기본 상태로 돌아옴
 
 #6-14
-#다음 텍쇼ㅡ트는 stringr 패키지에 포함된 sentences 데이터셋으로부터 처음 세 개 텍스트를 추출한 것이다.
+#다음 텍스트는 stringr 패키지에 포함된 sentences 데이터셋으로부터 처음 세 개 텍스트를 추출한 것이다.
 #여기에 포함된 'The/the'를 모두 'THE'로 변경하시오(stringr 패키지 사용)
 "The birch canoe slid on the smooth planks."
 "Glue the sheet to the dark blur background."

@@ -5,7 +5,7 @@ c(-5:5, Inf, -Inf, NA, NaN)
 even(c(-5:5, Inf, -Inf, NA, NaN))
 
 
-#8-2
+#8-2 홀짝 count
 cnteven <- function(x) {
   ecnt <- 0
   ocnt <- 0
@@ -24,14 +24,14 @@ cnteven(c(-5:5, Inf, -Inf, NA, NaN))
 length(c(-5:5, Inf, -Inf, NA, NaN))
 
 
-#8-3
+#8-3 숫자 크기 여부
 test3 <- function(x){
   ifelse(x > pi, TRUE, FALSE)
 }
 test3(c(3, 1:5))  
 
 
-#8-4
+#8-4 표준화하는 함수
 norm4 <- function(x){
   x <- x[!is.na(x)]
   z <- (x-mean(x))/sd(x)
@@ -43,7 +43,7 @@ norm4(test4)
 ?sd
 
 
-#8-5
+#8-5 문자열 대체
 remove5 <- function(x, rem=';',rep=''){
   gsub(rem, rep, x)
 }
@@ -93,7 +93,7 @@ fun7(1:50)
 fun7(1:50, med=TRUE)
 
 
-#8-8
+#8-8 단어 길이
 alice <- c('Alice', 'was', 'beginning', 'to','get','very','tired','of','sitting','by','her','sister','on','the','bank',
            'and','of','having','nothing','to','do','once','or','twice','she','had','peeped','into','the','book',
            'her','sister','was','reding','but','it','had','no','pictures','or','conversations','in','it','and','what',
